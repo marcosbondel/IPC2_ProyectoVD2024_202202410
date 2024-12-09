@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+from views.admin import AdminArea
 
 class LoginApp:
     def __init__(self, root):
@@ -44,34 +45,13 @@ class LoginApp:
         username = self.username_entry.get()
         password = self.password_entry.get()
 
-        if username == "AdminIPC”" and password == "ARTIPC2":
-            messagebox.showinfo("Login", "Inicio de sesión exitoso")
-            self.open_admin_area()
-        else:
-            messagebox.showerror("Login", "Nombre de usuario o contraseña incorrectos")
+        # if username == "AdminIPC”" and password == "ARTIPC2":
+        #     messagebox.showinfo("Login", "Inicio de sesión exitoso")
+        self.open_admin_area()
+        # else:
+        #     messagebox.showerror("Login", "Nombre de usuario o contraseña incorrectos")
 
     def open_admin_area(self):
         """Open the admin area."""
         self.root.withdraw()  # Hide the login window
         AdminArea(self.root)
-
-class AdminArea:
-    def __init__(self, parent):
-        self.parent = parent
-        self.admin_window = tk.Toplevel()
-        self.admin_window.title("Área de Administración")
-        self.admin_window.geometry("600x400")
-
-        # Welcome label
-        welcome_label = tk.Label(self.admin_window, text="Bienvenido al Área de Administración", font=("Arial", 16))
-        welcome_label.pack(pady=30)
-
-        # Logout button
-        logout_button = tk.Button(self.admin_window, text="Cerrar sesión", font=("Arial", 12), command=self.logout)
-        logout_button.pack(pady=20)
-
-    def logout(self):
-        """Logout and return to the login window."""
-        self.admin_window.destroy()
-        self.parent.deiconify()
-
