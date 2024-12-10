@@ -16,7 +16,7 @@ class ApplicantsList(DoublyLinkedList):
     def findByID(self, id):
         currentValue: Applicant = self.head
 
-        while currentValue.nextValue:
-            if currentValue.get_aid() == id:
+        while currentValue is not None:
+            if currentValue.value.get_aid() == id:
                 return currentValue
             curentValue = currentValue.nextValue
