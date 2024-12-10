@@ -73,12 +73,9 @@ class AdminArea:
                     case 'Direccion':
                         newApplicant.set_address(attr.text)
             
-            print(newApplicant.is_valid())
             if newApplicant.is_valid():
                 self.applicants_list.append(newApplicant)
         
-        self.applicants_list.printListAsc()
-    
     def readArtistFile(self, file_path):
         tree = ET.parse(file_path)
         root = tree.getroot()

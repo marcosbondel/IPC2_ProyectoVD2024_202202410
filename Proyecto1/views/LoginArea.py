@@ -53,22 +53,25 @@ class LoginApp:
         username = self.username_entry.get()
         password = self.password_entry.get()
 
-
-        print(self.applicants_list.len())
-
         if username.startswith('IPC-'):
-            self.applicants_list.printListAsc()
+            print('Searching applicant ...')
             applicant_found = self.applicants_list.findByID(username)
+
+            print(f'Applicant found: {applicant_found}')
             if applicant_found is not None and applicant_found.get_password() == password:
                 self.open_applicant_area()
-
-        if username.startswith('ART-'):
+                return
+            else:
+                messagebox.showerror("Login", "Nombre de usuario o contraseña incorrectos")
+        elif username.startswith('ART-'):
             artist_found = self.applicants_list.findByID(username)
             if artist_found is not None and artist_found.get_password() == password:
                 self.open_artist_area()
-
-
-        if username == "AdminIPC" and password == "ARTIPC2":
+                return
+            else:
+                messagebox.showerror("Login", "Nombre de usuario o contraseña incorrectos")
+        # if username == "AdminIPC" and password == "ARTIPC2":
+        elif username == "test" and password == "test":
             messagebox.showinfo("Login", "Inicio de sesión exitoso")
             self.open_admin_area()
         else:

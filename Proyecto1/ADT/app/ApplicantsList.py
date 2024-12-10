@@ -15,8 +15,12 @@ class ApplicantsList(DoublyLinkedList):
 
     def findByID(self, id):
         currentValue: Applicant = self.head
+        applicantFound = None
 
         while currentValue is not None:
             if currentValue.value.get_aid() == id:
-                return currentValue
-            curentValue = currentValue.nextValue
+                applicantFound = currentValue.value
+                break
+            currentValue = currentValue.nextValue
+
+        return applicantFound
