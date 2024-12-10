@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import messagebox
-from views.admin import AdminArea
+from views.Admin import AdminArea
+
+from ADT.app.ApplicantsList import ApplicantsList
+from ADT.app.ArtistsList import ArtistsList
 
 class LoginApp:
     def __init__(self, root):
@@ -10,6 +13,9 @@ class LoginApp:
         self.root.resizable(False, False)
 
         self.create_login_ui()
+
+        self.applicants_list = ApplicantsList()
+        self.artists_list = ArtistsList()
 
     def create_login_ui(self):
         """Create the login interface."""
@@ -54,4 +60,4 @@ class LoginApp:
     def open_admin_area(self):
         """Open the admin area."""
         self.root.withdraw()  # Hide the login window
-        AdminArea(self.root)
+        AdminArea(self.root, self.applicants_list)
