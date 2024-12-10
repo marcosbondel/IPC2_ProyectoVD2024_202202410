@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-from views.Login import LoginApp
+from views.LoginArea import LoginApp
 
 
 # Main application

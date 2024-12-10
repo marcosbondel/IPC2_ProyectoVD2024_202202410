@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox
-from views.Admin import AdminArea
+from views.AdminArea import AdminArea
+from views.ApplicantArea import ApplicantArea
+from views.ArtistArea import ArtistArea
 
 from ADT.app.ApplicantsList import ApplicantsList
 from ADT.app.ArtistsList import ArtistsList
@@ -51,13 +53,34 @@ class LoginApp:
         username = self.username_entry.get()
         password = self.password_entry.get()
 
-        # if username == "AdminIPC”" and password == "ARTIPC2":
-        #     messagebox.showinfo("Login", "Inicio de sesión exitoso")
-        self.open_admin_area()
-        # else:
-        #     messagebox.showerror("Login", "Nombre de usuario o contraseña incorrectos")
+        if username.startswith('IPC-'):
+            applicant_found = self.applicants_list.findByID(username)
+            if applicant_found is not None and applicant_found.get_password() == password:
+                self.open_applicant_area()
+
+        if username.startswith('ART-'):
+            artist_found = self.applicants_list.findByID(username)
+            if artist_found is not None and artist_found.get_password() == password:
+                self.open_artist_area()
+
+
+        if username == "AdminIPC”" and password == "ARTIPC2":
+            messagebox.showinfo("Login", "Inicio de sesión exitoso")
+            self.open_admin_area()
+        else:
+            messagebox.showerror("Login", "Nombre de usuario o contraseña incorrectos")
 
     def open_admin_area(self):
+        """Open the admin area."""
+        self.root.withdraw()  # Hide the login window
+        AdminArea(self.root, self.applicants_list, self.artists_list)
+    
+    def open_applicant_area(self):
+        """Open the admin area."""
+        self.root.withdraw()  # Hide the login window
+        AdminArea(self.root, self.applicants_list, self.artists_list)
+    
+    def open_artist_area(self):
         """Open the admin area."""
         self.root.withdraw()  # Hide the login window
         AdminArea(self.root, self.applicants_list, self.artists_list)

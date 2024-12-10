@@ -12,3 +12,11 @@ class ApplicantsList(DoublyLinkedList):
         while currentValue is not None:
             print(currentValue.value)
             currentValue = currentValue.nextValue
+
+    def findByID(self, id):
+        currentValue: Applicant = self.head
+
+        while currentValue.nextValue:
+            if currentValue.get_aid() == id:
+                return currentValue
+            curentValue = currentValue.nextValue
