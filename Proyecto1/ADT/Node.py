@@ -3,7 +3,7 @@ class SimpleNode:
         self.value = value
         self.nextValue = None
 
-class DoubleLinkedNode:
+class DoublyLinkedNode:
 
     def __init__(self, value):
         self.value = value

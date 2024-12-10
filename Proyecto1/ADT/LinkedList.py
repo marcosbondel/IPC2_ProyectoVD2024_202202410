@@ -14,6 +14,7 @@ class LinkedList:
 
         if self.head is None:
             self.head = newValue
+            self.length += 1
             return
 
         currentValue = self.head
@@ -22,6 +23,7 @@ class LinkedList:
             currentValue = currentValue.nextValue
 
         currentValue.nextValue = newValue
+        self.length += 1
 
     def printList(self):
         currentValue = self.head

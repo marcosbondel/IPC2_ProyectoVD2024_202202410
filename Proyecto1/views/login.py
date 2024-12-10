@@ -60,4 +60,4 @@ class LoginApp:
     def open_admin_area(self):
         """Open the admin area."""
         self.root.withdraw()  # Hide the login window
-        AdminArea(self.root, self.applicants_list)
+        AdminArea(self.root, self.applicants_list, self.artists_list)

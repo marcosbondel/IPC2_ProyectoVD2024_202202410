@@ -1,12 +1,12 @@
-from ADT.LinkedList import LinkedList
+from ADT.DoublyLinkedList import DoublyLinkedList
 from models.Applicant import Applicant
 
-class ApplicantsList(LinkedList):
+class ApplicantsList(DoublyLinkedList):
 
     def __init__(self):
         super().__init__()
 
-    def printList(self):
+    def printListAsc(self):
         currentValue: Applicant = self.head
 
         while currentValue is not None:

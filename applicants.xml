@@ -3,43 +3,43 @@
     <solicitante id="IPC-001" pwd="1234">
         <NombreCompleto>Jose Perez</NombreCompleto>
         <CorreoElectronico>juan.prez@examlple.com</CorreoElectronico>
-        <NumeroTelefono>1234567890</NumeroTelefono>
+        <NumeroTelefono>12345678</NumeroTelefono>
         <Direccion>Av. Siempre Viva 123</Direccion>
     </solicitante>    
     <solicitante id="IPC-002" pwd="5678">
         <NombreCompleto>Maria Lopez</NombreCompleto>
         <CorreoElectronico>maria.lopez@example.com</CorreoElectronico>
-        <NumeroTelefono>0987654321</NumeroTelefono>
+        <NumeroTelefono>09876543</NumeroTelefono>
         <Direccion>Calle Falsa 456</Direccion>
     </solicitante>
     <solicitante id="IPC-003" pwd="abcd">
         <NombreCompleto>Carlos Gomez</NombreCompleto>
         <CorreoElectronico>carlos.gomez@example.com</CorreoElectronico>
-        <NumeroTelefono>1122334455</NumeroTelefono>
+        <NumeroTelefono>11223344</NumeroTelefono>
         <Direccion>Av. Central 789</Direccion>
     </solicitante>
     <solicitante id="IPC-004" pwd="efgh">
         <NombreCompleto>Ana Martinez</NombreCompleto>
         <CorreoElectronico>ana.martinez@example.com</CorreoElectronico>
-        <NumeroTelefono>2233445566</NumeroTelefono>
+        <NumeroTelefono>22334455</NumeroTelefono>
         <Direccion>Calle Luna 101</Direccion>
     </solicitante>
     <solicitante id="IPC-005" pwd="ijkl">
         <NombreCompleto>Pedro Ramirez</NombreCompleto>
         <CorreoElectronico>pedro.ramirez@example.com</CorreoElectronico>
-        <NumeroTelefono>3344556677</NumeroTelefono>
+        <NumeroTelefono>33445566</NumeroTelefono>
         <Direccion>Av. Sol 202</Direccion>
     </solicitante>
     <solicitante id="IPC-006" pwd="mnop">
         <NombreCompleto>Lucia Fernandez</NombreCompleto>
         <CorreoElectronico>lucia.fernandez@example.com</CorreoElectronico>
-        <NumeroTelefono>4455667788</NumeroTelefono>
+        <NumeroTelefono>44556677</NumeroTelefono>
         <Direccion>Calle Estrella 303</Direccion>
     </solicitante>
     <solicitante id="IPC-007" pwd="qrst">
         <NombreCompleto>Jorge Hernandez</NombreCompleto>
         <CorreoElectronico>jorge.hernandez@example.com</CorreoElectronico>
-        <NumeroTelefono>5566778899</NumeroTelefono>
+        <NumeroTelefono>55667788</NumeroTelefono>
         <Direccion>Av. Cometa 404</Direccion>
     </solicitante>
 

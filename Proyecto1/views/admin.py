@@ -4,25 +4,33 @@ from tkinter import filedialog, messagebox
 from utils.XMLHandler import XMLHandler
 
 from ADT.app.ApplicantsList import ApplicantsList
+from ADT.app.ArtistsList import ArtistsList
 from models.Applicant import Applicant
+from models.Artist import Artist
 
 class AdminArea:
-    def __init__(self, parent, applicants_list: ApplicantsList):
+    def __init__(self, parent, applicants_list: ApplicantsList, artists_list: ArtistsList):
         self.parent = parent
         self.admin_window = tk.Toplevel()
         self.admin_window.title("Área de Administración")
         self.admin_window.geometry("600x400")
 
-        self.file_pahts = ()
+        self.applicants_file_paths = ()
+        self.artists_file_paths = ()
         self.applicants_list = applicants_list
+        self.artists_list = artists_list
 
         # Welcome label
         welcome_label = tk.Label(self.admin_window, text="Bienvenido al Área de Administración", font=("Arial", 16))
         welcome_label.pack(pady=30)
 
         # Load applicatns button
-        load_applicants_button = tk.Button(self.admin_window, text='Cargar solicitantes', font=("Arial", 12), command=self.getFilePaths)
+        load_applicants_button = tk.Button(self.admin_window, text='Cargar solicitantes', font=("Arial", 12), command=self.getApplicantsFilePaths)
         load_applicants_button.pack(pady=30)
+        
+        # Load applicatns button
+        load_artists_button = tk.Button(self.admin_window, text='Cargar artistas', font=("Arial", 12), command=self.getArtistsFilePaths)
+        load_artists_button.pack(pady=40)
 
         # Logout button
         logout_button = tk.Button(self.admin_window, text="Cerrar sesión", font=("Arial", 12), command=self.logout)
@@ -33,13 +41,19 @@ class AdminArea:
         self.admin_window.destroy()
         self.parent.deiconify()
 
-    def getFilePaths(self):
-        self.file_paths = XMLHandler().getFilePaths()
+    def getApplicantsFilePaths(self):
+        self.applicants_file_paths = XMLHandler().getFilePaths()
 
-        for file_path in self.file_paths:
-            self.readFile(file_path)
+        for file_path in self.applicants_file_paths:
+            self.readApplicantFile(file_path)
 
-    def readFile(self, file_path):
+    def getArtistsFilePaths(self):
+        self.artists_file_paths = XMLHandler().getFilePaths()
+
+        for file_path in self.artists_file_paths:
+            self.readArtistFile(file_path)
+
+    def readApplicantFile(self, file_path):
         tree = ET.parse(file_path)
         root = tree.getroot()
 
@@ -59,30 +73,35 @@ class AdminArea:
                     case 'Direccion':
                         newApplicant.set_address(attr.text)
             
-            self.applicants_list.append(newApplicant)
+            print(newApplicant.is_valid())
+            if newApplicant.is_valid():
+                self.applicants_list.append(newApplicant)
         
-        self.applicants_list.printList()
+        self.applicants_list.printListAsc()
+    
+    def readArtistFile(self, file_path):
+        tree = ET.parse(file_path)
+        root = tree.getroot()
 
-    def load_applicants(self):
-        file_paths = filedialog.askopenfilenames(
-            title="Selecciona uno o más archivos XML",
-            filetypes=(("Archivos XML", "*.xml"), ("Todos los archivos", "*.*"))
-        )
-        if file_paths:
-            file_list.delete("1.0", tk.END)  # Clear previous content
-            for file_path in file_paths:
-                try:
-                    tree = ET.parse(file_path)  # Parse the XML file
-                    root = tree.getroot()  # Get the root element
+        for artist in root:
+            newArtist = Artist()
+            newArtist.set_aid(artist.attrib['id'])
+            newArtist.set_password(artist.attrib['pwd'])
 
-                    # Display the file name and its XML structure
-                    file_list.insert(tk.END, f"--- {file_path} ---\n")
-                    file_list.insert(tk.END, format_xml(root) + "\n\n")
-                except ET.ParseError as e:
-                    messagebox.showerror("Error", f"Error al parsear el archivo {file_path}:\n{e}")
-                except Exception as e:
-                    messagebox.showerror("Error", f"No se pudo abrir el archivo {file_path}:\n{e}")
-
-            print(file_list)
-        else:
-            messagebox.showinfo("Cancelado", "No se seleccionaron archivos")
+            for attr in artist:
+                match attr.tag:
+                    case 'NombreCompleto':
+                        newArtist.set_full_name(attr.text)
+                    case 'CorreoElectronico':
+                        newArtist.set_email(attr.text)
+                    case 'NumeroTelefono':
+                        newArtist.set_phone(attr.text)
+                    case 'Especialidades':
+                        newArtist.set_skills(attr.text)
+                    case 'NotasAdicionales':
+                        newArtist.set_notes(attr.text)
+            
+            if newArtist.is_valid():
+                self.artists_list.append(newArtist)
+        
+        self.artists_list.printList()
