@@ -24,13 +24,17 @@ class AdminArea:
         welcome_label = tk.Label(self.admin_window, text="Bienvenido al Área de Administración", font=("Arial", 16))
         welcome_label.pack(pady=30)
 
-        # Load applicatns button
+        # Load applicants button
         load_applicants_button = tk.Button(self.admin_window, text='Cargar solicitantes', font=("Arial", 12), command=self.getApplicantsFilePaths)
         load_applicants_button.pack(pady=30)
         
-        # Load applicatns button
+        # Load artists button
         load_artists_button = tk.Button(self.admin_window, text='Cargar artistas', font=("Arial", 12), command=self.getArtistsFilePaths)
         load_artists_button.pack(pady=40)
+        
+        # View applicants button
+        view_artists_button = tk.Button(self.admin_window, text='Ver artistas', font=("Arial", 12), command=self.artists_list.draw)
+        view_artists_button.pack(pady=50)
 
         # Logout button
         logout_button = tk.Button(self.admin_window, text="Cerrar sesión", font=("Arial", 12), command=self.logout)
@@ -75,6 +79,8 @@ class AdminArea:
             
             if newApplicant.is_valid():
                 self.applicants_list.append(newApplicant)
+
+        self.applicants_list.printListAsc()
         
     def readArtistFile(self, file_path):
         tree = ET.parse(file_path)
@@ -101,4 +107,6 @@ class AdminArea:
             if newArtist.is_valid():
                 self.artists_list.append(newArtist)
         
-        self.artists_list.printList()
+        # print('Artistas: ')
+        # print(self.artists_list.len())
+        # print(self.artists_list.printListAsc())

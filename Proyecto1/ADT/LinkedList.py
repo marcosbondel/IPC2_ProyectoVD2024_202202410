@@ -19,7 +19,7 @@ class LinkedList:
 
         currentValue = self.head
 
-        while currentValue.nextValue is not None:
+        while currentValue.nextValue:
             currentValue = currentValue.nextValue
 
         currentValue.nextValue = newValue
@@ -28,7 +28,7 @@ class LinkedList:
     def printList(self):
         currentValue = self.head
 
-        while currentValue is not None:
+        while currentValue:
             print(currentValue.value)
             currentValue = currentValue.nextValue
 

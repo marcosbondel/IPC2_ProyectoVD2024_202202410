@@ -77,7 +77,7 @@ class ArtistArea:
             if newApplicant.is_valid():
                 self.applicants_list.append(newApplicant)
         
-        self.applicants_list.printListAsc()
+        # self.applicants_list.printListAsc()
     
     def readArtistFile(self, file_path):
         tree = ET.parse(file_path)
@@ -104,4 +104,4 @@ class ArtistArea:
             if newArtist.is_valid():
                 self.artists_list.append(newArtist)
         
-        self.artists_list.printList()
+        # self.artists_list.printList()
