@@ -1,14 +1,18 @@
 import re
+from ADT.Pile import Pile
+from models.User import User
 
-class Applicant:
+class Applicant(User):
 
     def __init__(self, aid, password, full_name, email, phone, address):
-        self.aid = aid
-        self.password = password
-        self.full_name = full_name
-        self.email = email
-        self.phone = phone
+        super(aid, password, full_name, phone, email)
+        # self.aid = aid
+        # self.password = password
+        # self.full_name = full_name
+        # self.email = email
+        # self.phone = phone
         self.address = address
+        self.pile = Pile() 
 
     def __init__(self):
         pass

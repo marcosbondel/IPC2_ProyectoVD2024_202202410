@@ -5,8 +5,6 @@ from utils.XMLHandler import XMLHandler
 
 from ADT.app.ApplicantsList import ApplicantsList
 from ADT.app.ArtistsList import ArtistsList
-from models.Applicant import Applicant
-from models.Artist import Artist
 
 class ApplicantArea:
     def __init__(self, parent, applicants_list: ApplicantsList, artists_list: ArtistsList):
@@ -25,16 +23,16 @@ class ApplicantArea:
         welcome_label.pack(pady=30)
 
         # Load applicatns button
-        load_applicants_button = tk.Button(self.admin_window, text='Cargar solicitantes', font=("Arial", 12), command=self.getApplicantsFilePaths)
+        load_applicants_button = tk.Button(self.admin_window, text='Cargar solicitud', font=("Arial", 12), command=self.getApplicantsFilePaths)
         load_applicants_button.pack(pady=30)
         
-        # Load applicatns button
-        load_artists_button = tk.Button(self.admin_window, text='Cargar artistas', font=("Arial", 12), command=self.getArtistsFilePaths)
-        load_artists_button.pack(pady=40)
+        # # Load applicatns button
+        # load_artists_button = tk.Button(self.admin_window, text='Cargar artistas', font=("Arial", 12), command=self.getArtistsFilePaths)
+        # load_artists_button.pack(pady=40)
 
-        # Logout button
-        logout_button = tk.Button(self.admin_window, text="Cerrar sesión", font=("Arial", 12), command=self.logout)
-        logout_button.pack(pady=20)
+        # # Logout button
+        # logout_button = tk.Button(self.admin_window, text="Cerrar sesión", font=("Arial", 12), command=self.logout)
+        # logout_button.pack(pady=20)
 
     def logout(self):
         """Logout and return to the login window."""
