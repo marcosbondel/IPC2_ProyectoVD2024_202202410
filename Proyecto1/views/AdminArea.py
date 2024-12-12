@@ -13,7 +13,7 @@ class AdminArea:
         self.parent = parent
         self.admin_window = tk.Toplevel()
         self.admin_window.title("Área de Administración")
-        self.admin_window.geometry("600x400")
+        self.admin_window.geometry("700x500")
 
         self.applicants_file_paths = ()
         self.artists_file_paths = ()
@@ -30,11 +30,15 @@ class AdminArea:
         
         # Load artists button
         load_artists_button = tk.Button(self.admin_window, text='Cargar artistas', font=("Arial", 12), command=self.getArtistsFilePaths)
-        load_artists_button.pack(pady=40)
+        load_artists_button.pack(pady=35)
         
         # View applicants button
+        view_applicants_button = tk.Button(self.admin_window, text='Ver solicitantes', font=("Arial", 12), command=self.applicants_list.draw)
+        view_applicants_button.pack(pady=40)
+
+        # View applicants button
         view_artists_button = tk.Button(self.admin_window, text='Ver artistas', font=("Arial", 12), command=self.artists_list.draw)
-        view_artists_button.pack(pady=50)
+        view_artists_button.pack(pady=45)
 
         # Logout button
         logout_button = tk.Button(self.admin_window, text="Cerrar sesión", font=("Arial", 12), command=self.logout)

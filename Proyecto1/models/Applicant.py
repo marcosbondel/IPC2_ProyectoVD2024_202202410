@@ -77,7 +77,7 @@ class Applicant:
     # Function to validate email
     def is_valid_email(self):
         # Regular expression for email validation
-        email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        email_regex =  r"^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ._%+-]+@[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.-]+\.[a-zA-Z]{2,}$"
         return re.match(email_regex, self.email) is not None
 
     # Function to validate phone number
@@ -87,11 +87,9 @@ class Applicant:
         return re.match(phone_regex, self.phone) is not None
 
     def __str__(self):
-        return f'''
-            aid: {self.aid}
-            password: {self.password}
-            full_name: {self.full_name}
-            email: {self.email}
-            phone: {self.phone}
-            address: {self.address}
-        '''
+        return f'aid: {self.aid}\\n' \
+            f'password: {self.password}\\n' \
+            f'full_name: {self.full_name}\\n' \
+            f'phone: {self.phone}\\n' \
+            f'email: {self.email}\\n' \
+            f'address: {self.address}\\n'

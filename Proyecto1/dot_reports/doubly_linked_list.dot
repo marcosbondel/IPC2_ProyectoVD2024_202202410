@@ -1,0 +1,32 @@
+digraph G {
+            rankdir=LR;
+            node[shape=record, height=.1]
+        nodo1[label="{<f1>|aid: IPC-001\npassword: 3267\nfull_name: Carlos Ruiz\nphone: 67984298\nemail: carlos.ruiz@example.com\naddress: Ciudad de Guatemala, Guatemala\n|<f2>}"];
+nodo2[label="{<f1>|aid: IPC-002\npassword: 4312\nfull_name: Carlos Ruiz\nphone: 15336206\nemail: carlos.ruiz@mail.com\naddress: Escuintla, Guatemala\n|<f2>}"];
+nodo3[label="{<f1>|aid: IPC-003\npassword: 1893\nfull_name: María López\nphone: 23637281\nemail: maría.lópez@mail.com\naddress: Quetzaltenango, Guatemala\n|<f2>}"];
+nodo4[label="{<f1>|aid: IPC-004\npassword: 9153\nfull_name: Camila Sánchez\nphone: 23396941\nemail: camila.sánchez@example.com\naddress: Escuintla, Guatemala\n|<f2>}"];
+nodo5[label="{<f1>|aid: IPC-005\npassword: 8929\nfull_name: Camila Sánchez\nphone: 66267395\nemail: camila.sánchez@example.com\naddress: Escuintla, Guatemala\n|<f2>}"];
+nodo6[label="{<f1>|aid: IPC-006\npassword: 6958\nfull_name: Diego Torres\nphone: 80134227\nemail: diego.torres@example.com\naddress: Escuintla, Guatemala\n|<f2>}"];
+nodo7[label="{<f1>|aid: IPC-007\npassword: 8701\nfull_name: Carlos Ruiz\nphone: 27595614\nemail: carlos.ruiz@example.com\naddress: Cobán, Guatemala\n|<f2>}"];
+nodo8[label="{<f1>|aid: IPC-008\npassword: 4912\nfull_name: Diego Torres\nphone: 17208214\nemail: diego.torres@correo.com\naddress: Quetzaltenango, Guatemala\n|<f2>}"];
+nodo9[label="{<f1>|aid: IPC-009\npassword: 3328\nfull_name: Luis Hernández\nphone: 65184529\nemail: luis.hernández@correo.com\naddress: Escuintla, Guatemala\n|<f2>}"];
+nodo10[label="{<f1>|aid: IPC-010\npassword: 3777\nfull_name: Diego Torres\nphone: 47860837\nemail: diego.torres@example.com\naddress: Quetzaltenango, Guatemala\n|<f2>}"];
+nodo1:f2 -> nodo2:f1;
+nodo2:f1 -> nodo1:f2;
+nodo2:f2 -> nodo3:f1;
+nodo3:f1 -> nodo2:f2;
+nodo3:f2 -> nodo4:f1;
+nodo4:f1 -> nodo3:f2;
+nodo4:f2 -> nodo5:f1;
+nodo5:f1 -> nodo4:f2;
+nodo5:f2 -> nodo6:f1;
+nodo6:f1 -> nodo5:f2;
+nodo6:f2 -> nodo7:f1;
+nodo7:f1 -> nodo6:f2;
+nodo7:f2 -> nodo8:f1;
+nodo8:f1 -> nodo7:f2;
+nodo8:f2 -> nodo9:f1;
+nodo9:f1 -> nodo8:f2;
+nodo9:f2 -> nodo10:f1;
+nodo10:f1 -> nodo9:f2;
+}
