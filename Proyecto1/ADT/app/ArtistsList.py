@@ -21,7 +21,7 @@ class ArtistsList(LinkedList):
         currentValue: Artist = self.head
 
         while currentValue.nextValue:
-            if currentValue.get_aid() == id:
+            if currentValue.aid == id:
                 return currentValue
             curentValue = currentValue.nextValue
     

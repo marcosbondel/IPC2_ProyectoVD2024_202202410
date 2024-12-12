@@ -20,7 +20,7 @@ class ApplicantsList(DoublyLinkedList):
         applicantFound = None
 
         while currentValue is not None:
-            if currentValue.value.get_aid() == id:
+            if currentValue.value.aid == id:
                 applicantFound = currentValue.value
                 break
             currentValue = currentValue.nextValue

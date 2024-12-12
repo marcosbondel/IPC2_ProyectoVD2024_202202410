@@ -2,31 +2,37 @@ from ADT.LinkedList import LinkedList
 
 class BFigure:
 
-    def __init__(self, bid, name):
-        self.bid = bid
-        self.name = name
-        self.design: LinkedList = LinkedList()
+    def __init__(self, bId, name):
+        self._bId = bId
+        self._name = name
+        self._design = LinkedList()
 
-    # Getter for bid
-    def get_bid(self):
-        return self.bid
+    def __init__(self):
+        pass
 
-    # Setter for bid
-    def set_bid(self, bid):
-        self.bid = bid
+    # Getter and Setter for bId
+    @property
+    def bId(self):
+        return self._bId
 
-    # Getter for name
-    def get_name(self):
-        return self.name
+    @bId.setter
+    def bId(self, value):
+        self._bId = value
 
-    # Setter for name
-    def set_name(self, name):
-        self.name = name
+    # Getter and Setter for name
+    @property
+    def name(self):
+        return self._name
 
-    # Getter for design
-    def get_design(self):
-        return self.design
+    @name.setter
+    def name(self, value):
+        self._name = value
 
-    # Setter for design
-    def set_design(self, design):
-        self.design = design
+    # Getter and Setter for design
+    @property
+    def design(self):
+        return self._design
+
+    @design.setter
+    def design(self, value):
+        self._design = value

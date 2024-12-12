@@ -1,4 +1,4 @@
-class BDesign:
+class BPixel:
 
     def __init__(self, row, col, data):
         self.row = row

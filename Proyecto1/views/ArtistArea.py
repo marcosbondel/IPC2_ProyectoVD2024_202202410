@@ -9,7 +9,7 @@ from models.Applicant import Applicant
 from models.Artist import Artist
 
 class ArtistArea:
-    def __init__(self, parent, applicants_list: ApplicantsList, artists_list: ArtistsList):
+    def __init__(self, parent, artist: Artist, applicants_list: ApplicantsList, artists_list: ArtistsList):
         self.parent = parent
         self.admin_window = tk.Toplevel()
         self.admin_window.title("Área de Artista")
@@ -19,6 +19,8 @@ class ArtistArea:
         self.artists_file_paths = ()
         self.applicants_list = applicants_list
         self.artists_list = artists_list
+
+        self.artist_session = artist
 
         # Welcome label
         welcome_label = tk.Label(self.admin_window, text="Bienvenido al Área de Artista", font=("Arial", 16))

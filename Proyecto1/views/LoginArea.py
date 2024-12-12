@@ -54,19 +54,18 @@ class LoginApp:
         password = self.password_entry.get()
 
         if username.startswith('IPC-'):
-            print('Searching applicant ...')
             applicant_found = self.applicants_list.findByID(username)
 
-            print(f'Applicant found: {applicant_found}')
-            if applicant_found is not None and applicant_found.get_password() == password:
-                self.open_applicant_area()
+            if applicant_found is not None and applicant_found.password == password:
+                self.open_applicant_area(applicant_found)
                 return
             else:
                 messagebox.showerror("Login", "Nombre de usuario o contraseña incorrectos")
         elif username.startswith('ART-'):
             artist_found = self.applicants_list.findByID(username)
-            if artist_found is not None and artist_found.get_password() == password:
-                self.open_artist_area()
+
+            if artist_found is not None and artist_found.password == password:
+                self.open_artist_area(artist_found)
                 return
             else:
                 messagebox.showerror("Login", "Nombre de usuario o contraseña incorrectos")
@@ -82,12 +81,12 @@ class LoginApp:
         self.root.withdraw()  # Hide the login window
         AdminArea(self.root, self.applicants_list, self.artists_list)
     
-    def open_applicant_area(self):
+    def open_applicant_area(self, applicant_found):
         """Open the admin area."""
         self.root.withdraw()  # Hide the login window
-        ApplicantArea(self.root, self.applicants_list, self.artists_list)
+        ApplicantArea(self.root, applicant_found, self.applicants_list, self.artists_list)
     
-    def open_artist_area(self):
+    def open_artist_area(self, artist_found):
         """Open the admin area."""
         self.root.withdraw()  # Hide the login window
-        ArtistArea(self.root, self.applicants_list, self.artists_list)
+        ArtistArea(self.root, artist_found, self.applicants_list, self.artists_list)
