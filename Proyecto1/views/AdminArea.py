@@ -3,6 +3,7 @@ import xml.etree.ElementTree as ET
 from tkinter import filedialog, messagebox
 from utils.XMLHandler import XMLHandler
 
+from ADT.Pile import Pile
 from ADT.app.ApplicantsList import ApplicantsList
 from ADT.app.ArtistsList import ArtistsList
 from models.Applicant import Applicant
@@ -13,10 +14,10 @@ class AdminArea:
         self.parent = parent
         self.admin_window = tk.Toplevel()
         self.admin_window.title("Área de Administración")
-        self.admin_window.geometry("600x400")
+        self.admin_window.geometry("900x700")
 
-        self.applicants_file_paths = ()
-        self.artists_file_paths = ()
+        self.applicants_file_paths = None
+        self.artists_file_paths = None
         self.applicants_list = applicants_list
         self.artists_list = artists_list
 
@@ -30,11 +31,15 @@ class AdminArea:
         
         # Load artists button
         load_artists_button = tk.Button(self.admin_window, text='Cargar artistas', font=("Arial", 12), command=self.getArtistsFilePaths)
-        load_artists_button.pack(pady=40)
+        load_artists_button.pack(pady=35)
         
         # View applicants button
+        view_applicants_button = tk.Button(self.admin_window, text='Ver solicitantes', font=("Arial", 12), command=self.applicants_list.draw)
+        view_applicants_button.pack(pady=40)
+
+        # View applicants button
         view_artists_button = tk.Button(self.admin_window, text='Ver artistas', font=("Arial", 12), command=self.artists_list.draw)
-        view_artists_button.pack(pady=50)
+        view_artists_button.pack(pady=45)
 
         # Logout button
         logout_button = tk.Button(self.admin_window, text="Cerrar sesión", font=("Arial", 12), command=self.logout)
@@ -63,19 +68,19 @@ class AdminArea:
 
         for applicant in root:
             newApplicant = Applicant()
-            newApplicant.set_aid(applicant.attrib['id'])
-            newApplicant.set_password(applicant.attrib['pwd'])
+            newApplicant.aid = applicant.attrib['id']
+            newApplicant.password = applicant.attrib['pwd']
 
             for attr in applicant:
                 match attr.tag:
                     case 'NombreCompleto':
-                        newApplicant.set_full_name(attr.text)
+                        newApplicant.full_name = attr.text
                     case 'CorreoElectronico':
-                        newApplicant.set_email(attr.text)
+                        newApplicant.email = attr.text
                     case 'NumeroTelefono':
-                        newApplicant.set_phone(attr.text)
+                        newApplicant.phone = attr.text
                     case 'Direccion':
-                        newApplicant.set_address(attr.text)
+                        newApplicant.set_address = attr.text
             
             if newApplicant.is_valid():
                 self.applicants_list.append(newApplicant)
@@ -88,17 +93,17 @@ class AdminArea:
 
         for artist in root:
             newArtist = Artist()
-            newArtist.set_aid(artist.attrib['id'])
-            newArtist.set_password(artist.attrib['pwd'])
+            newArtist.aid(artist.attrib['id'])
+            newArtist.password(artist.attrib['pwd'])
 
             for attr in artist:
                 match attr.tag:
                     case 'NombreCompleto':
-                        newArtist.set_full_name(attr.text)
+                        newArtist.full_name(attr.text)
                     case 'CorreoElectronico':
-                        newArtist.set_email(attr.text)
+                        newArtist.email(attr.text)
                     case 'NumeroTelefono':
-                        newArtist.set_phone(attr.text)
+                        newArtist.phone(attr.text)
                     case 'Especialidades':
                         newArtist.set_skills(attr.text)
                     case 'NotasAdicionales':

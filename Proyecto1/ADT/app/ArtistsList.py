@@ -21,7 +21,7 @@ class ArtistsList(LinkedList):
         currentValue: Artist = self.head
 
         while currentValue.nextValue:
-            if currentValue.get_aid() == id:
+            if currentValue.aid == id:
                 return currentValue
             curentValue = currentValue.nextValue
     
@@ -35,7 +35,7 @@ class ArtistsList(LinkedList):
 
         #CREAR LOS NODOS
         current = self.head
-        while current is not None:
+        while current:
             codedot += 'nodo'+str(counter_nodes)+'[label=\"{'+str(current.value)+'|<f1>}\"];\n'
             counter_nodes+=1
             current = current.nextValue
@@ -43,8 +43,7 @@ class ArtistsList(LinkedList):
         #CREAR LOS ENLACES
         current = self.head
         counter_nodes = 1
-        print(f'current: {current}')
-        while current.nextValue is not None:
+        while current and current.nextValue:
             codedot += 'nodo'+str(counter_nodes)+' -> nodo'+str(counter_nodes+1)+';\n'
             counter_nodes+=1
             current = current.nextValue

@@ -3,7 +3,7 @@ from tkinter import filedialog
 class XMLHandler:
 
     def __init__(self):
-        self.file_paths = ()
+        self.file_paths = None
         self.openFinder()
 
     def openFinder(self):
@@ -13,7 +13,7 @@ class XMLHandler:
         )
 
         if not self.file_paths:
-            self.file_paths = ()
+            self.file_paths = None
 
     def getFilePaths(self):
         return self.file_paths

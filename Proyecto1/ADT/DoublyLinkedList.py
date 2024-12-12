@@ -17,9 +17,6 @@ class DoublyLinkedList:
             self.head = newValue
             self.last = newValue
         else:
-            # self.last.nextValue = newValue
-            # newValue.previousValue = self.last
-            # self.last == newValue
             currentValue = self.head
 
             while currentValue.nextValue:
