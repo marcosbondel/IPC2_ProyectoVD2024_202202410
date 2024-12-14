@@ -1,4 +1,4 @@
-from ADT.Node import Node
+from ADT.Node import SimpleNode
 
 class Queue:
 
@@ -10,7 +10,7 @@ class Queue:
         return self.size
 
     def enqueue(self, value):
-        newNode:Node = Node(value)
+        newNode:Node = SimpleNode(value)
 
         if self.head is None:
             self.head = newNode

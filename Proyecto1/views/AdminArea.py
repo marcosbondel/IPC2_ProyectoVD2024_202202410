@@ -80,8 +80,9 @@ class AdminArea:
                     case 'NumeroTelefono':
                         newApplicant.phone = attr.text
                     case 'Direccion':
-                        newApplicant.set_address = attr.text
-            
+                        newApplicant.address = attr.text
+
+            newApplicant.pile = Pile()    
             if newApplicant.is_valid():
                 self.applicants_list.append(newApplicant)
 
@@ -99,15 +100,15 @@ class AdminArea:
             for attr in artist:
                 match attr.tag:
                     case 'NombreCompleto':
-                        newArtist.full_name(attr.text)
+                        newArtist.full_name = attr.text
                     case 'CorreoElectronico':
-                        newArtist.email(attr.text)
+                        newArtist.email = attr.text
                     case 'NumeroTelefono':
-                        newArtist.phone(attr.text)
+                        newArtist.phone = attr.text
                     case 'Especialidades':
-                        newArtist.set_skills(attr.text)
+                        newArtist.skills = attr.text
                     case 'NotasAdicionales':
-                        newArtist.set_notes(attr.text)
+                        newArtist.notes = attr.text
             
             if newArtist.is_valid():
                 self.artists_list.append(newArtist)

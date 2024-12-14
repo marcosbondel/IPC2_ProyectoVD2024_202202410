@@ -1,3 +1,5 @@
+import os
+import subprocess
 from ADT.Node import NodePile
 
 class Pile:
@@ -32,4 +34,42 @@ class Pile:
 
     def peek(self):
         return self.peek
+
+    def draw(self):
+        dot_code = ''
+        dot_code += '''digraph G {
+            rankdir=LR;
+            node[shape=Mrecord];
+        '''
+
+        print(f'Peek: {self.peek}')
+
+        #CREAMOS EL NODO DE LA PILA
+        dot_code += 'Pila[xlabel=\"Pila\" label=\"'
+        #GRAFICAMOS LOS NODOS DE LA PILA
+        current = self.peek
+        while current != None:
+            if current.down != None:
+                dot_code+=str(current.value) + '|'
+            else:
+                dot_code+=str(current.value)
+            current = current.down
+        dot_code+='\"];\n'
+        dot_code+='}'
+
+        #CREAMOS EL file_pile DOT
+        path_dot = 'Proyecto1/dot_reports/pile.dot'
+        file_pile = open(path_dot,'w')
+        file_pile.write(dot_code)
+        file_pile.close()
+
+        #GENERAMOS LA IMAGEN
+        image_path = 'Proyecto1/reports/pile.png'
+        comando = 'dot -Tpng '+path_dot+ ' -o '+image_path
+        os.system(comando)
+
+        #ABRIR LA IMAGEN
+        open_image_path = os.path.abspath(image_path)
+        subprocess.run(["open", open_image_path])
+        print('Grafico de pila generado con exito :)')
         

@@ -28,3 +28,8 @@ class BPixel:
     # Setter for data
     def set_data(self, data):
         self.data = data
+
+    def __str__(self):
+        return f'row: {self.row}\\n' \
+            f'col: {self.col}\\n' \
+            f'data: {self.data}\\n'

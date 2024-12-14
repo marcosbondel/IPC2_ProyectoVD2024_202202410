@@ -13,19 +13,25 @@ class Artist(User):
     def __init__(self):
         pass
 
+    @property
+    def skills(self):
+        return self._skills
+
+    @skills.setter
+    def skills(self, value):
+        self._skills = value
+    
+    @property
+    def notes(self):
+        return self._notes
+
+    @notes.setter
+    def notes(self, value):
+        self._notes = value
+
     # Getter and Setter for skills
     def get_skills(self):
         return self.skills
-
-    def set_skills(self, skills):
-        self.skills = skills
-
-    # Getter and Setter for notes
-    def get_notes(self):
-        return self.notes
-
-    def set_notes(self, notes):
-        self.notes = notes
 
     def is_valid(self):
         valid_artist = True

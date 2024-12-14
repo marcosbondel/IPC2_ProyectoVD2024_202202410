@@ -54,4 +54,8 @@ class User:
 
     # Optional: Add __str__ for better representation
     def __str__(self):
-        return f"User(aid={self._aid}, full_name={self._full_name}, email={self._email})"
+        return f'aid: {self.aid}\\n' \
+            f'password: {self.password}\\n' \
+            f'full_name: {self.full_name}\\n' \
+            f'phone: {self.phone}\\n' \
+            f'email: {self.email}\\n'

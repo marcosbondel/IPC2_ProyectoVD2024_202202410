@@ -23,6 +23,15 @@ class Applicant(User):
 
      # Getter and Setter for pile
     @property
+    def address(self):
+        return self._address
+
+    @address.setter
+    def address(self, value):
+        self._address = value
+
+     # Getter and Setter for pile
+    @property
     def pile(self):
         return self._pile
 
@@ -60,3 +69,11 @@ class Applicant(User):
         # Regular expression for phone number validation
         phone_regex = r'^\d{8}$'
         return re.match(phone_regex, self.phone) is not None
+
+    def __str__(self):
+        return f'aid: {self.aid}\\n' \
+            f'password: {self.password}\\n' \
+            f'full_name: {self.full_name}\\n' \
+            f'phone: {self.phone}\\n' \
+            f'email: {self.email}\\n' \
+            f'address: {self.address}'

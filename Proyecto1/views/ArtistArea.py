@@ -4,6 +4,7 @@ from tkinter import filedialog, messagebox
 from utils.XMLHandler import XMLHandler
 
 from ADT.Queue import Queue
+from models.Artist import Artist
 
 class ArtistArea:
     def __init__(self, parent, artist: Artist, figures_requested_queue):

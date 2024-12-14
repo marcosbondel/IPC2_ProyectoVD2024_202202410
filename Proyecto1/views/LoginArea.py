@@ -17,6 +17,7 @@ class LoginApp:
 
         self.create_login_ui()
 
+        self.requested_pictures_queue = requested_pictures_queue
         self.applicants_list = applicants_list
         self.artists_list = artists_list
 
@@ -85,7 +86,7 @@ class LoginApp:
     def open_applicant_area(self, applicant_found):
         """Open the admin area."""
         self.root.withdraw()  # Hide the login window
-        ApplicantArea(self.root, applicant_found, self.applicants_list, self.artists_list)
+        ApplicantArea(self.root, self.requested_pictures_queue, applicant_found, self.applicants_list, self.artists_list)
     
     def open_artist_area(self, artist_found):
         """Open the admin area."""
