@@ -6,9 +6,10 @@ from views.ArtistArea import ArtistArea
 
 from ADT.app.ApplicantsList import ApplicantsList
 from ADT.app.ArtistsList import ArtistsList
+from ADT.Queue import Queue
 
 class LoginApp:
-    def __init__(self, root):
+    def __init__(self, root, requested_pictures_queue: Queue, applicants_list: ApplicantsList, artists_list: ArtistsList):
         self.root = root
         self.root.title("Login")
         self.root.geometry("500x300")
@@ -16,8 +17,8 @@ class LoginApp:
 
         self.create_login_ui()
 
-        self.applicants_list = ApplicantsList()
-        self.artists_list = ArtistsList()
+        self.applicants_list = applicants_list
+        self.artists_list = artists_list
 
     def create_login_ui(self):
         """Create the login interface."""

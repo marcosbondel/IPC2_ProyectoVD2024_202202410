@@ -1,5 +1,6 @@
 import re
 from models.User import User
+from ADT.CircularLinkedList import CircularLinkedList
 
 class Artist(User):
 
@@ -7,6 +8,7 @@ class Artist(User):
         super().__init__(aid, password, full_name, phone, email)
         self.skills = skills
         self.notes = notes
+        self.accepted_figures = CircularLinkedList()
 
     def __init__(self):
         pass

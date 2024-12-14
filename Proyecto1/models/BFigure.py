@@ -5,6 +5,8 @@ class BFigure:
     def __init__(self, bId, name):
         self._bId = bId
         self._name = name
+        self._applicant = None
+        self._artist = None
         self._design = LinkedList()
 
     def __init__(self):
@@ -27,6 +29,20 @@ class BFigure:
     @name.setter
     def name(self, value):
         self._name = value
+
+    def applicant(self):
+        return self._applicant
+
+    @applicant.setter
+    def applicant(self, value):
+        self._applicant = value
+
+    def artist(self):
+        return self._artist
+
+    @artist.setter
+    def artist(self, value):
+        self._artist = value
 
     # Getter and Setter for design
     @property

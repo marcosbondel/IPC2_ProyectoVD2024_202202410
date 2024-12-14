@@ -1,5 +1,6 @@
 import re
 from ADT.Pile import Pile
+from ADT.DoublyLinkedList import DoublyLinkedList
 from models.User import User
 
 class Applicant(User):
@@ -8,6 +9,7 @@ class Applicant(User):
         super().__init__(aid, password, full_name, phone, email)
         self.address = address
         self.pile = Pile() 
+        self.accepted_figures = DoublyLinkedList() 
 
     def __init__(self):
         pass
