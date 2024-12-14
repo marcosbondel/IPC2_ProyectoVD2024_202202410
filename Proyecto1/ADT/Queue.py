@@ -40,4 +40,7 @@ class Queue:
 
     def first(self):
         return self.head
+
+    def draw(self):
+        pass
         

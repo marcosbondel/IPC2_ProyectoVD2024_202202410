@@ -89,4 +89,4 @@ class LoginApp:
     def open_artist_area(self, artist_found):
         """Open the admin area."""
         self.root.withdraw()  # Hide the login window
-        ArtistArea(self.root, artist_found, self.applicants_list, self.artists_list)
+        ArtistArea(self.root, artist_found)

@@ -3,36 +3,34 @@ import xml.etree.ElementTree as ET
 from tkinter import filedialog, messagebox
 from utils.XMLHandler import XMLHandler
 
-from ADT.app.ApplicantsList import ApplicantsList
-from ADT.app.ArtistsList import ArtistsList
-from models.Applicant import Applicant
-from models.Artist import Artist
+from ADT.Queue import Queue
 
 class ArtistArea:
-    def __init__(self, parent, artist: Artist, applicants_list: ApplicantsList, artists_list: ArtistsList):
+    def __init__(self, parent, artist: Artist, figures_requested_queue):
         self.parent = parent
         self.admin_window = tk.Toplevel()
         self.admin_window.title("Área de Artista")
         self.admin_window.geometry("600x400")
 
-        self.applicants_file_paths = ()
-        self.artists_file_paths = ()
-        self.applicants_list = applicants_list
-        self.artists_list = artists_list
-
         self.artist_session = artist
+        self.figures_requested_queue: Queue = figures_requested_queue
 
         # Welcome label
         welcome_label = tk.Label(self.admin_window, text="Bienvenido al Área de Artista", font=("Arial", 16))
         welcome_label.pack(pady=30)
 
-        # Load applicatns button
-        load_applicants_button = tk.Button(self.admin_window, text='Cargar solicitantes', font=("Arial", 12), command=self.getApplicantsFilePaths)
-        load_applicants_button.pack(pady=30)
+        # Accept button
+        accept_button = tk.Button(self.admin_window, text='Aceptar', font=("Arial", 12), command=self.figures_requested_queue.draw)
+        accept_button.pack(pady=40)
         
-        # Load applicatns button
-        load_artists_button = tk.Button(self.admin_window, text='Cargar artistas', font=("Arial", 12), command=self.getArtistsFilePaths)
-        load_artists_button.pack(pady=40)
+        # View queue button
+        view_queue_button = tk.Button(self.admin_window, text='Ver cola', font=("Arial", 12), command=self.figures_requested_queue.draw)
+        view_queue_button.pack(pady=50)
+        
+        # Accepted pictures button
+        accepted_pictures_button = tk.Button(self.admin_window, text='Imagenes solicitadas', font=("Arial", 12), command=self.figures_requested_queue.draw)
+        accepted_pictures_button.pack(pady=60)
+        
 
         # Logout button
         logout_button = tk.Button(self.admin_window, text="Cerrar sesión", font=("Arial", 12), command=self.logout)
@@ -43,11 +41,6 @@ class ArtistArea:
         self.admin_window.destroy()
         self.parent.deiconify()
 
-    def getApplicantsFilePaths(self):
-        self.applicants_file_paths = XMLHandler().getFilePaths()
-
-        for file_path in self.applicants_file_paths:
-            self.readApplicantFile(file_path)
 
     def getArtistsFilePaths(self):
         self.artists_file_paths = XMLHandler().getFilePaths()
@@ -81,29 +74,3 @@ class ArtistArea:
         
         # self.applicants_list.printListAsc()
     
-    def readArtistFile(self, file_path):
-        tree = ET.parse(file_path)
-        root = tree.getroot()
-
-        for artist in root:
-            newArtist = Artist()
-            newArtist.set_aid(artist.attrib['id'])
-            newArtist.set_password(artist.attrib['pwd'])
-
-            for attr in artist:
-                match attr.tag:
-                    case 'NombreCompleto':
-                        newArtist.set_full_name(attr.text)
-                    case 'CorreoElectronico':
-                        newArtist.set_email(attr.text)
-                    case 'NumeroTelefono':
-                        newArtist.set_phone(attr.text)
-                    case 'Especialidades':
-                        newArtist.set_skills(attr.text)
-                    case 'NotasAdicionales':
-                        newArtist.set_notes(attr.text)
-            
-            if newArtist.is_valid():
-                self.artists_list.append(newArtist)
-        
-        # self.artists_list.printList()
