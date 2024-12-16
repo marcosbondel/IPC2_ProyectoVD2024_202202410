@@ -35,7 +35,7 @@ class CircularLinkedList:
             print(current)
             current = current.nextValue
 
-    def draw(self):
+    def draw(self, aid):
         dot_code = ''
 
         #CREAMOS EL CODIGO PARA LA LISTA
@@ -65,14 +65,14 @@ class CircularLinkedList:
         dot_code += '}'
 
         #CREAMOS EL file DOT
-        dot_path = 'Proyecto1/dot_reports/circular_list.dot'
+        dot_path = f'Proyecto1/dot_reports/preceseed_circular_list_{aid}.dot'
 
         file = open(dot_path, 'w')
         file.write(dot_code)
         file.close()
 
         #GENERAR LA IMAGEN
-        image_path = 'Proyecto1/reports/circular_list.png'
+        image_path = f'Proyecto1/reports/preceseed_circular_list_{aid}.png'
         
 
         command = 'dot -Tpng '+dot_path + ' -o '+image_path

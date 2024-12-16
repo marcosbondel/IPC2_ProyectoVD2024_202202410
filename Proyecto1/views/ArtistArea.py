@@ -17,13 +17,11 @@ class ArtistArea:
         self.requested_figures_queue: Queue = requested_figures_queue
 
         # Welcome label
-        welcome_label = tk.Label(self.admin_window, text="Bienvenido al Área de Artista", font=("Arial", 16))
+        welcome_label = tk.Label(self.admin_window, text=f'Bienvenid@ al Área de Artista\n{self.artist_session.full_name}', font=("Arial", 16))
         welcome_label.pack(pady=30)
        
        
         # Queue label
-        print(f'Queue first value: {self.requested_figures_queue.first().value.showInfoInArtistArea()}')
-        # queue_label = tk.Label(self.admin_window, text=f"FIGURA SOLICITADA\n{self.requested_figures_queue.first().value.showInfoInArtistArea()}", font=("Arial", 16))
         self.queue_label = tk.Label(self.admin_window, text=self.showQueueText(), font=("Arial", 16))
         self.queue_label.place(x=250,y=100)
 
@@ -89,7 +87,7 @@ class ArtistArea:
             messagebox.showinfo("Ohoh", "La lista esta vacia...")
             return
 
-        self.artist_session.accepted_figures.draw()
+        self.artist_session.accepted_figures.draw(self.artist_session.aid)
 
     def readApplicantFile(self, file_path):
         tree = ET.parse(file_path)

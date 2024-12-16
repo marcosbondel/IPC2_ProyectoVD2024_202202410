@@ -1,16 +1,16 @@
 digraph G {
             rankdir=LR;
             node[shape=record, height=.1]
-        nodo1[label="{aid: ART-223\npassword: 6318\nfull_name: Miguel Hernández\nphone: 818299431\nemail: miguel.hernandez@example.com\nskills: Animación, Diseño Gráfico\nnotes: Creativo y eficiente en pixel art.|<f1>}"];
-nodo2[label="{aid: ART-422\npassword: 6086\nfull_name: Juan Sánchez\nphone: 236280522\nemail: juan.sanchez@mail.com\nskills: Pixel Art, Concept Art\nnotes: Gran atención al detalle en ilustraciones.|<f1>}"];
-nodo3[label="{aid: ART-812\npassword: 9231\nfull_name: Pablo Pérez\nphone: 628903057\nemail: pablo.perez@mail.com\nskills: Ilustración Digital, Animación\nnotes: Apto para dibujar cosas bonitas.|<f1>}"];
-nodo4[label="{aid: ART-799\npassword: 7633\nfull_name: Ana Sánchez\nphone: 926688553\nemail: ana.sanchez@mail.com\nskills: Animación, Diseño Gráfico, Ilustración Digital\nnotes: Especialista en retratos digitales.|<f1>}"];
-nodo5[label="{aid: ART-238\npassword: 7539\nfull_name: Lucía Vargas\nphone: 968379578\nemail: lucia.vargas@mail.com\nskills: Arte 3D, Animación\nnotes: Disponible para proyectos urgentes.|<f1>}"];
-nodo6[label="{aid: ART-593\npassword: 9142\nfull_name: Juan Martínez\nphone: 387905066\nemail: juan.martinez@example.com\nskills: Ilustración Digital, Diseño Gráfico, Animación\nnotes: Especialista en retratos digitales.|<f1>}"];
-nodo7[label="{aid: ART-864\npassword: 7041\nfull_name: Miguel Sánchez\nphone: 632532299\nemail: miguel.sanchez@artistmail.com\nskills: Arte 3D\nnotes: Ideal para diseño de personajes.|<f1>}"];
-nodo8[label="{aid: ART-003\npassword: 1481\nfull_name: Pablo Hernández\nphone: 925560365\nemail: pablo.hernandez@mail.com\nskills: Concept Art\nnotes: Disponible para proyectos urgentes.|<f1>}"];
-nodo9[label="{aid: ART-096\npassword: 5373\nfull_name: Elena Ramírez\nphone: 970244057\nemail: elena.ramirez@mail.com\nskills: Ilustración Digital\nnotes: Disponible para proyectos urgentes.|<f1>}"];
-nodo10[label="{aid: ART-201\npassword: 3031\nfull_name: Lucía Sánchez\nphone: 899269017\nemail: lucia.sanchez@pixelworld.net\nskills: Pixel Art\nnotes: Ideal para diseño de personajes.|<f1>}"];
+        nodo1[label="{Id: ART-223\nNombre: Miguel Hernández\nTelefono: 818299431\nEmail: miguel.hernandez@example.com\nHabilidades: Animación, Diseño Gráfico\nNotas: Creativo y eficiente en pixel art.|<f1>}"];
+nodo2[label="{Id: ART-422\nNombre: Juan Sánchez\nTelefono: 236280522\nEmail: juan.sanchez@mail.com\nHabilidades: Pixel Art, Concept Art\nNotas: Gran atención al detalle en ilustraciones.|<f1>}"];
+nodo3[label="{Id: ART-812\nNombre: Pablo Pérez\nTelefono: 628903057\nEmail: pablo.perez@mail.com\nHabilidades: Ilustración Digital, Animación\nNotas: Apto para dibujar cosas bonitas.|<f1>}"];
+nodo4[label="{Id: ART-799\nNombre: Ana Sánchez\nTelefono: 926688553\nEmail: ana.sanchez@mail.com\nHabilidades: Animación, Diseño Gráfico, Ilustración Digital\nNotas: Especialista en retratos digitales.|<f1>}"];
+nodo5[label="{Id: ART-238\nNombre: Lucía Vargas\nTelefono: 968379578\nEmail: lucia.vargas@mail.com\nHabilidades: Arte 3D, Animación\nNotas: Disponible para proyectos urgentes.|<f1>}"];
+nodo6[label="{Id: ART-593\nNombre: Juan Martínez\nTelefono: 387905066\nEmail: juan.martinez@example.com\nHabilidades: Ilustración Digital, Diseño Gráfico, Animación\nNotas: Especialista en retratos digitales.|<f1>}"];
+nodo7[label="{Id: ART-864\nNombre: Miguel Sánchez\nTelefono: 632532299\nEmail: miguel.sanchez@artistmail.com\nHabilidades: Arte 3D\nNotas: Ideal para diseño de personajes.|<f1>}"];
+nodo8[label="{Id: ART-003\nNombre: Pablo Hernández\nTelefono: 925560365\nEmail: pablo.hernandez@mail.com\nHabilidades: Concept Art\nNotas: Disponible para proyectos urgentes.|<f1>}"];
+nodo9[label="{Id: ART-096\nNombre: Elena Ramírez\nTelefono: 970244057\nEmail: elena.ramirez@mail.com\nHabilidades: Ilustración Digital\nNotas: Disponible para proyectos urgentes.|<f1>}"];
+nodo10[label="{Id: ART-201\nNombre: Lucía Sánchez\nTelefono: 899269017\nEmail: lucia.sanchez@pixelworld.net\nHabilidades: Pixel Art\nNotas: Ideal para diseño de personajes.|<f1>}"];
 nodo1 -> nodo2;
 nodo2 -> nodo3;
 nodo3 -> nodo4;

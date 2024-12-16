@@ -24,7 +24,7 @@ class AdminArea:
         self.artists_list = artists_list
 
         # Welcome label
-        welcome_label = tk.Label(self.admin_window, text="Bienvenido al Área de Administración", font=("Arial", 16))
+        welcome_label = tk.Label(self.admin_window, text="Bienvenid@ al Área de Administración", font=("Arial", 16))
         welcome_label.pack(pady=30)
 
         # Load applicants button

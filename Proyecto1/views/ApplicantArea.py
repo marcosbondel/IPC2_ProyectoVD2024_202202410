@@ -27,7 +27,7 @@ class ApplicantArea:
         self.requested_pictures_queue = requested_pictures_queue
 
         # Welcome label
-        welcome_label = tk.Label(self.applicant_window, text="Bienvenido al Área de Solicitante", font=("Arial", 16))
+        welcome_label = tk.Label(self.applicant_window, text=f'Bienvenid@ al Área de Solicitante\n{self.applicant_session.full_name}', font=("Arial", 16))
         welcome_label.pack(pady=30)
 
         # Load applicatns button
