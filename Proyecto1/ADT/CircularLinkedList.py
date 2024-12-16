@@ -9,6 +9,9 @@ class CircularLinkedList:
         self.last = None
         self.size = 0
 
+    def len(self):
+        return size
+
     def append(self, value):
         newNode = SimpleNode(value)
 

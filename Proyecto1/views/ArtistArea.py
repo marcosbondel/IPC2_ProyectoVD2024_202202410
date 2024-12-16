@@ -31,11 +31,11 @@ class ArtistArea:
         accept_button.place(x=50,y=100)
         
         # View queue button
-        view_queue_button = tk.Button(self.admin_window, text='Ver cola', font=("Arial", 12), command=self.requested_figures_queue.draw)
+        view_queue_button = tk.Button(self.admin_window, text='Ver cola', font=("Arial", 12), command=self.view_queue_report)
         view_queue_button.place(x=50,y=200)
         
         # Accepted pictures button
-        accepted_pictures_button = tk.Button(self.admin_window, text='Imagenes solicitadas', font=("Arial", 12), command=self.artist_session.accepted_figures.draw)
+        accepted_pictures_button = tk.Button(self.admin_window, text='Imagenes solicitadas', font=("Arial", 12), command=self.view_accepted_figures_report)
         accepted_pictures_button.place(x=50,y=300)
 
         # Logout button
@@ -66,6 +66,20 @@ class ArtistArea:
         self.artist_session.accepted_figures.append(accepted_figure)
 
         messagebox.showinfo("Solicitud", f"Figura '{accepted_figure.name}' aceptada correctamente :)")
+
+    def view_queue_report(self):
+        if self.requested_figures_queue.len() == 0:
+            messagebox.showinfo("Ohoh", "La cola esta vacia...")
+            return
+
+        self.requested_figures_queue.draw()
+
+    def view_accepted_figures_report(self):
+        if self.artist_session.accepted_figures.len() == 0:
+            messagebox.showinfo("Ohoh", "La lista esta vacia...")
+            return
+
+        self.artist_session.accepted_figures.draw()
 
     def readApplicantFile(self, file_path):
         tree = ET.parse(file_path)
