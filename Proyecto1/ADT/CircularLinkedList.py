@@ -47,7 +47,7 @@ class CircularLinkedList:
         nodes_counter = 0
         current = self.head
         while nodes_counter < self.size:
-            dot_code += 'nodo'+str(nodes_counter)+'[label=\"{'+str(current.valor)+'|<f1>}\"];\n'
+            dot_code += 'nodo'+str(nodes_counter)+'[label=\"{'+str(current.value)+'|<f1>}\"];\n'
             current = current.nextValue
             nodes_counter+=1
         
