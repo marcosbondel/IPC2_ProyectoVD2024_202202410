@@ -80,9 +80,8 @@ class Applicant(User):
         return re.match(phone_regex, self.phone) is not None
 
     def __str__(self):
-        return f'aid: {self.aid}\\n' \
-            f'password: {self.password}\\n' \
-            f'full_name: {self.full_name}\\n' \
-            f'phone: {self.phone}\\n' \
-            f'email: {self.email}\\n' \
-            f'address: {self.address}'
+        return f'Id: {self.aid}\\n' \
+            f'Nombre: {self.full_name}\\n' \
+            f'Telefono: {self.phone}\\n' \
+            f'Email: {self.email}\\n' \
+            f'Direccion: {self.address}'

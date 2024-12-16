@@ -55,9 +55,12 @@ class BFigure:
     def design(self, value):
         self._design = value
 
-    def __str__(self):
-        # return f'bId: {self.bId}\\n' \
-        #     f'name: {self.name}\\n' \
-        #     f'name: {self.applicant.full_name}\\n'
+    def showInfoInArtistArea(self):
+        return f'Figura: {self.name}\n Solicitante: {self.applicant.aid} - {self.applicant.full_name}'
 
-        return f'Id: {self.bId}\n Nombre: {self.name}\n Solicitante: {self.applicant.full_name}'
+    def __str__(self):
+        return f'bId: {self.bId}\\n' \
+            f'name: {self.name}\\n' \
+            f'name: {self.applicant.full_name}\\n'
+
+        # return f'Id: {self.bId}\n Nombre: {self.name}\n Solicitante: {self.applicant.full_name}'

@@ -22,8 +22,8 @@ class ArtistArea:
        
        
         # Queue label
-        print(f'Queue first value: {self.requested_figures_queue.first().value}')
-        queue_label = tk.Label(self.admin_window, text=f"FIGURA SOLICITADA\n{self.requested_figures_queue.first().value}", font=("Arial", 16))
+        print(f'Queue first value: {self.requested_figures_queue.first().value.showInfoInArtistArea()}')
+        queue_label = tk.Label(self.admin_window, text=f"FIGURA SOLICITADA\n{self.requested_figures_queue.first().value.showInfoInArtistArea()}", font=("Arial", 16))
         queue_label.place(x=250,y=100)
 
         # Accept button
@@ -87,6 +87,5 @@ class ArtistArea:
                     case 'Direccion':
                         newApplicant.set_address(attr.text)
             
-            print(newApplicant.is_valid())
             if newApplicant.is_valid():
                 self.applicants_list.append(newApplicant)

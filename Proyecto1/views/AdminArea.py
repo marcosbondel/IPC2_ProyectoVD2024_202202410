@@ -16,7 +16,7 @@ class AdminArea:
         self.parent = parent
         self.admin_window = tk.Toplevel()
         self.admin_window.title("Área de Administración")
-        self.admin_window.geometry("900x700")
+        self.admin_window.geometry("500x600")
 
         self.applicants_file_paths = None
         self.artists_file_paths = None
@@ -36,11 +36,11 @@ class AdminArea:
         load_artists_button.pack(pady=35)
         
         # View applicants button
-        view_applicants_button = tk.Button(self.admin_window, text='Ver solicitantes', font=("Arial", 12), command=self.applicants_list.draw)
+        view_applicants_button = tk.Button(self.admin_window, text='Ver solicitantes', font=("Arial", 12), command=self.view_applicants_report)
         view_applicants_button.pack(pady=40)
 
         # View applicants button
-        view_artists_button = tk.Button(self.admin_window, text='Ver artistas', font=("Arial", 12), command=self.artists_list.draw)
+        view_artists_button = tk.Button(self.admin_window, text='Ver artistas', font=("Arial", 12), command=self.view_artists_report)
         view_artists_button.pack(pady=45)
 
         # Logout button
@@ -63,6 +63,21 @@ class AdminArea:
 
         for file_path in self.artists_file_paths:
             self.readArtistFile(file_path)
+
+
+    def view_applicants_report(self):
+        if self.applicants_list.len() == 0:
+            messagebox.showinfo("Ohoh", "No hay solicitantes que mostrar...")
+            return
+
+        self.applicants_list.draw()
+
+    def view_artists_report(self):
+        if self.artists_list.len() == 0:
+            messagebox.showinfo("Ohoh", "No hay artistas que mostrar...")
+            return
+
+        self.artists_list.draw()
 
     def readApplicantFile(self, file_path):
         tree = ET.parse(file_path)
@@ -89,6 +104,8 @@ class AdminArea:
                 newApplicant.accepted_figures = DoublyLinkedList()
                 self.applicants_list.append(newApplicant)
 
+        messagebox.showinfo("Yeahh", "Solicitantes cargados correctamente :)")
+
     def readArtistFile(self, file_path):
         tree = ET.parse(file_path)
         root = tree.getroot()
@@ -114,3 +131,5 @@ class AdminArea:
             if newArtist.is_valid():
                 newArtist.accepted_figures = CircularLinkedList()
                 self.artists_list.append(newArtist)
+        
+        messagebox.showinfo("Yeahh", "Aritistas cargados correctamente :)")

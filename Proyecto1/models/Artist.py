@@ -73,10 +73,9 @@ class Artist(User):
         return re.match(phone_regex, self.phone) is not None
 
     def __str__(self):
-        return f'aid: {self.aid}\\n' \
-            f'password: {self.password}\\n' \
-            f'full_name: {self.full_name}\\n' \
-            f'phone: {self.phone}\\n' \
-            f'email: {self.email}\\n' \
-            f'skills: {self.skills}\\n' \
-            f'notes: {self.notes}'
+        return f'Id: {self.aid}\\n' \
+            f'Nombre: {self.full_name}\\n' \
+            f'Telefono: {self.phone}\\n' \
+            f'Email: {self.email}\\n' \
+            f'Habilidades: {self.skills}\\n' \
+            f'Notas: {self.notes}'
