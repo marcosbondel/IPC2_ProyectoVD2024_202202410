@@ -11,7 +11,7 @@ class ArtistArea:
         self.parent = parent
         self.admin_window = tk.Toplevel()
         self.admin_window.title("Área de Artista")
-        self.admin_window.geometry("400x600")
+        self.admin_window.geometry("600x500")
 
         self.artist_session = artist
         self.requested_figures_queue: Queue = requested_figures_queue
@@ -23,8 +23,9 @@ class ArtistArea:
        
         # Queue label
         print(f'Queue first value: {self.requested_figures_queue.first().value.showInfoInArtistArea()}')
-        queue_label = tk.Label(self.admin_window, text=f"FIGURA SOLICITADA\n{self.requested_figures_queue.first().value.showInfoInArtistArea()}", font=("Arial", 16))
-        queue_label.place(x=200,y=100)
+        # queue_label = tk.Label(self.admin_window, text=f"FIGURA SOLICITADA\n{self.requested_figures_queue.first().value.showInfoInArtistArea()}", font=("Arial", 16))
+        self.queue_label = tk.Label(self.admin_window, text=self.showQueueText(), font=("Arial", 16))
+        self.queue_label.place(x=250,y=100)
 
         # Accept button
         accept_button = tk.Button(self.admin_window, text='Aceptar', font=("Arial", 12), command=self.acceptFigure)
@@ -48,6 +49,14 @@ class ArtistArea:
         self.admin_window.destroy()
         self.parent.deiconify()
 
+    def showQueueText(self):
+        text = 'Nada que mostrar...'
+
+        if self.requested_figures_queue.len() > 0:
+            text = f"FIGURA SOLICITADA\n{self.requested_figures_queue.first().value.showInfoInArtistArea()}"
+
+        return text
+
 
     def getArtistsFilePaths(self):
         self.artists_file_paths = XMLHandler().getFilePaths()
@@ -66,6 +75,7 @@ class ArtistArea:
         self.artist_session.accepted_figures.append(accepted_figure)
 
         messagebox.showinfo("Solicitud", f"Figura '{accepted_figure.name}' aceptada correctamente :)")
+        self.queue_label.config(text=self.showQueueText())
 
     def view_queue_report(self):
         if self.requested_figures_queue.len() == 0:

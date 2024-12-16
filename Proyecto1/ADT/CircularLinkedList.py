@@ -10,25 +10,22 @@ class CircularLinkedList:
         self.size = 0
 
     def len(self):
-        return size
+        return self.size
 
     def append(self, value):
         newNode = SimpleNode(value)
 
-        if self.head is None and self.last is None:
+        # Caso inicial: Lista vacía
+        if self.head is None:
             self.head = newNode
             self.last = newNode
-            self.size += 1
-            return
+            newNode.nextValue = newNode  # Punto circular
+        else:
+            # Agregar al final usando `self.last`
+            self.last.nextValue = newNode
+            newNode.nextValue = self.head  # Punto circular
+            self.last = newNode
 
-        current = self.head
-
-        while current.nextValue:
-            current = current.nextValue
-
-        current.nextValue = newNode
-        newNode.nextValue = self.head
-        self.last = newNode
         self.size += 1
 
     def showList(self):

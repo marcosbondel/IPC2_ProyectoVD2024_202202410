@@ -21,11 +21,13 @@ class Queue:
 
         current = self.head
 
-        while current.nextValue:
+        while current:
+            if current.nextValue is None:
+                current.nextValue = newNode
+                self.size += 1
+                break
             current = current.nextValue
 
-        current.nextValue = newNode
-        self.size += 1
 
     def dequeue(self):
 
