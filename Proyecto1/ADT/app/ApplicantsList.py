@@ -74,4 +74,3 @@ class ApplicantsList(DoublyLinkedList):
         open_image_path = os.path.abspath(img_path)
         # os.startfile(open_image_path)
         subprocess.run(["open", open_image_path])
-        print('Se genero la grafica de la lista doblemente enlazada')

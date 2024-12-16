@@ -1,7 +1,7 @@
 digraph G {
             rankdir=LR;
             node[shape=Mrecord];
-        Pila[xlabel="Pila" label="Id: 3
- Nombre: Rana
+        Pila[xlabel="Pila" label="Id: 2
+ Nombre: Capibara
  Solicitante: Carlos Ruiz"];
 }

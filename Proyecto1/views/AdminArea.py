@@ -112,5 +112,5 @@ class AdminArea:
                         newArtist.notes = attr.text
             
             if newArtist.is_valid():
-                newArtist.accepted_figures = DoublyLinkedList()
+                newArtist.accepted_figures = CircularLinkedList()
                 self.artists_list.append(newArtist)

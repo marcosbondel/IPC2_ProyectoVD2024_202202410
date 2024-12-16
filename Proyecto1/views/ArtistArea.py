@@ -35,9 +35,8 @@ class ArtistArea:
         view_queue_button.place(x=50,y=200)
         
         # Accepted pictures button
-        accepted_pictures_button = tk.Button(self.admin_window, text='Imagenes solicitadas', font=("Arial", 12), command=self.requested_figures_queue.draw)
+        accepted_pictures_button = tk.Button(self.admin_window, text='Imagenes solicitadas', font=("Arial", 12), command=self.artist_session.accepted_figures.draw)
         accepted_pictures_button.place(x=50,y=300)
-        
 
         # Logout button
         logout_button = tk.Button(self.admin_window, text="Cerrar sesión", font=("Arial", 12), command=self.logout)

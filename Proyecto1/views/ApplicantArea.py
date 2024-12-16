@@ -42,7 +42,7 @@ class ApplicantArea:
         view_pile_button.pack(pady=50)
        
         # View pile button
-        view_list_button = tk.Button(self.applicant_window, text='Ver Lista', font=("Arial", 12), command=self.getPicturesFilePaths)
+        view_list_button = tk.Button(self.applicant_window, text='Ver Lista', font=("Arial", 12), command=self.applicant_session.accepted_figures.draw)
         view_list_button.pack(pady=60)
 
         # Logout button
