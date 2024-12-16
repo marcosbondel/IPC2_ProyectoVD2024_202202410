@@ -28,10 +28,15 @@ class Artist(User):
     @notes.setter
     def notes(self, value):
         self._notes = value
+ 
+    @property
+    def accepted_figures(self):
+        return self._accepted_figures
 
-    # Getter and Setter for skills
-    def get_skills(self):
-        return self.skills
+    @accepted_figures.setter
+    def accepted_figures(self, value):
+        self._accepted_figures = value
+
 
     def is_valid(self):
         valid_artist = True

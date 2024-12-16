@@ -9,7 +9,7 @@ from ADT.app.ArtistsList import ArtistsList
 from ADT.Queue import Queue
 
 class LoginApp:
-    def __init__(self, root, requested_pictures_queue: Queue, applicants_list: ApplicantsList, artists_list: ArtistsList):
+    def __init__(self, root, requested_figures_queue: Queue, applicants_list: ApplicantsList, artists_list: ArtistsList):
         self.root = root
         self.root.title("Login")
         self.root.geometry("500x300")
@@ -17,7 +17,7 @@ class LoginApp:
 
         self.create_login_ui()
 
-        self.requested_pictures_queue = requested_pictures_queue
+        self.requested_figures_queue = requested_figures_queue
         self.applicants_list = applicants_list
         self.artists_list = artists_list
 
@@ -55,22 +55,33 @@ class LoginApp:
         username = self.username_entry.get()
         password = self.password_entry.get()
 
+        self.artists_list.printListAsc()
+
         if username.startswith('IPC-'):
             applicant_found = self.applicants_list.findByID(username)
 
-            if applicant_found is not None and applicant_found.password == password:
+            if not applicant_found:
+                messagebox.showerror("Login", "Solicitante no existe")
+                return
+
+            if applicant_found.password == password:
                 self.open_applicant_area(applicant_found)
                 return
-            else:
-                messagebox.showerror("Login", "Nombre de usuario o contraseña incorrectos")
+                
+            messagebox.showerror("Login", "Nombre de usuario o contraseña incorrectos")
         elif username.startswith('ART-'):
-            artist_found = self.applicants_list.findByID(username)
+            artist_found = self.artists_list.findByID(username)
 
-            if artist_found is not None and artist_found.password == password:
+            if not artist_found:
+                messagebox.showerror("Login", "Artista no existe")
+                return
+
+            if artist_found.password == password:
                 self.open_artist_area(artist_found)
                 return
-            else:
-                messagebox.showerror("Login", "Nombre de usuario o contraseña incorrectos")
+            
+
+            messagebox.showerror("Login", "Nombre de usuario o contraseña incorrectos")
         # if username == "AdminIPC" and password == "ARTIPC2":
         elif username == "test" and password == "test":
             messagebox.showinfo("Login", "Inicio de sesión exitoso")
@@ -86,9 +97,9 @@ class LoginApp:
     def open_applicant_area(self, applicant_found):
         """Open the admin area."""
         self.root.withdraw()  # Hide the login window
-        ApplicantArea(self.root, self.requested_pictures_queue, applicant_found, self.applicants_list, self.artists_list)
+        ApplicantArea(self.root, self.requested_figures_queue, applicant_found, self.applicants_list, self.artists_list)
     
     def open_artist_area(self, artist_found):
         """Open the admin area."""
         self.root.withdraw()  # Hide the login window
-        ArtistArea(self.root, artist_found)
+        ArtistArea(self.root, artist_found, self.requested_figures_queue)

@@ -6,6 +6,7 @@ from utils.XMLHandler import XMLHandler
 from ADT.LinkedList import LinkedList
 from ADT.Pile import Pile
 from ADT.Queue import Queue
+from ADT.Node import SimpleNode
 from ADT.app.ApplicantsList import ApplicantsList
 from ADT.app.ArtistsList import ArtistsList
 from models.Applicant import Applicant
@@ -17,7 +18,7 @@ class ApplicantArea:
         self.parent = parent
         self.applicant_window = tk.Toplevel()
         self.applicant_window.title("Área de Solicitante")
-        self.applicant_window.geometry("600x400")
+        self.applicant_window.geometry("600x700")
 
         self.figures_file_paths = ()
 
@@ -88,6 +89,7 @@ class ApplicantArea:
 
     def request_figure(self):
         peek = self.applicant_session.pile.pop()
-        self.requested_pictures_queue.enqueue(peek)
+        self.requested_pictures_queue.enqueue(peek.value)
+        print(f'Peek value: {peek.value}')
 
         messagebox.showinfo("Informacion", "Solicitud enviada a la cola :)")

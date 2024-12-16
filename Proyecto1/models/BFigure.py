@@ -56,5 +56,8 @@ class BFigure:
         self._design = value
 
     def __str__(self):
-        return f'bId: {self.bId}\\n' \
-            f'name: {self.name}\\n'
+        # return f'bId: {self.bId}\\n' \
+        #     f'name: {self.name}\\n' \
+        #     f'name: {self.applicant.full_name}\\n'
+
+        return f'Id: {self.bId}\n Nombre: {self.name}\n Solicitante: {self.applicant.full_name}'

@@ -17,13 +17,17 @@ class ArtistsList(LinkedList):
             currentValue = currentValue.nextValue
 
 
-    def findByID(self, id):
+    def findByID(self, aid):
         currentValue: Artist = self.head
+        artistFound = None
 
-        while currentValue.nextValue:
-            if currentValue.aid == id:
-                return currentValue
-            curentValue = currentValue.nextValue
+        while currentValue is not None:
+            if currentValue.value.aid == aid:
+                artistFound = currentValue.value
+                break
+            currentValue = currentValue.nextValue
+
+        return artistFound
     
     def draw(self):
         codedot = ''

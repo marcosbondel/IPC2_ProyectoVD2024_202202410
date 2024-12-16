@@ -4,6 +4,8 @@ from tkinter import filedialog, messagebox
 from utils.XMLHandler import XMLHandler
 
 from ADT.Pile import Pile
+from ADT.DoublyLinkedList import DoublyLinkedList
+from ADT.CircularLinkedList import CircularLinkedList
 from ADT.app.ApplicantsList import ApplicantsList
 from ADT.app.ArtistsList import ArtistsList
 from models.Applicant import Applicant
@@ -82,20 +84,19 @@ class AdminArea:
                     case 'Direccion':
                         newApplicant.address = attr.text
 
-            newApplicant.pile = Pile()    
             if newApplicant.is_valid():
+                newApplicant.pile = Pile()    
+                newApplicant.accepted_figures = DoublyLinkedList()
                 self.applicants_list.append(newApplicant)
 
-        self.applicants_list.printListAsc()
-        
     def readArtistFile(self, file_path):
         tree = ET.parse(file_path)
         root = tree.getroot()
 
         for artist in root:
             newArtist = Artist()
-            newArtist.aid(artist.attrib['id'])
-            newArtist.password(artist.attrib['pwd'])
+            newArtist.aid = artist.attrib['id']
+            newArtist.password = artist.attrib['pwd']
 
             for attr in artist:
                 match attr.tag:
@@ -111,8 +112,5 @@ class AdminArea:
                         newArtist.notes = attr.text
             
             if newArtist.is_valid():
+                newArtist.accepted_figures = DoublyLinkedList()
                 self.artists_list.append(newArtist)
-        
-        # print('Artistas: ')
-        # print(self.artists_list.len())
-        # print(self.artists_list.printListAsc())

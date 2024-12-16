@@ -12,13 +12,13 @@ if __name__ == "__main__":
     root = tk.Tk()
 
     # Data persistence
-    requested_pictures_queue = Queue()
+    requested_figures_queue = Queue()
     applicants_list = ApplicantsList()
     artists_list = ArtistsList()
 
     app = LoginApp(
         root, 
-        requested_pictures_queue,
+        requested_figures_queue,
         applicants_list,
         artists_list
     )

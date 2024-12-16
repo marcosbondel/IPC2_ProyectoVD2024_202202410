@@ -9,7 +9,7 @@ class Applicant(User):
         super().__init__(aid, password, full_name, phone, email)
         self.address = address
         self.pile = Pile() 
-        self.accepted_figures = DoublyLinkedList() 
+        self.accepted_figures = DoublyLinkedList()
 
     def __init__(self):
         pass
@@ -30,7 +30,7 @@ class Applicant(User):
     def address(self, value):
         self._address = value
 
-     # Getter and Setter for pile
+    # Getter and Setter for pile
     @property
     def pile(self):
         return self._pile
@@ -38,6 +38,15 @@ class Applicant(User):
     @pile.setter
     def pile(self, value):
         self._pile = value
+    
+    # Getter and Setter for accepted_figures
+    @property
+    def accepted_figures(self):
+        return self._accepted_figures
+
+    @accepted_figures.setter
+    def accepted_figures(self, value):
+        self._accepted_figures = value
 
     def is_valid(self):
         valid_applicant = True
