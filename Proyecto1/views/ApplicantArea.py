@@ -88,6 +88,7 @@ class ApplicantArea:
 
         newFigure = BFigure()
         newFigure.artist = None
+        newFigure.design = LinkedList()
 
         for child in root:
             match child.tag:
@@ -102,7 +103,6 @@ class ApplicantArea:
                             pixel.text
                         )
 
-                        newFigure.design = LinkedList()
                         newFigure.design.append(newPixel)
                     
 

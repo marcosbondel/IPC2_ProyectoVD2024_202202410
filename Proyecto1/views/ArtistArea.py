@@ -4,7 +4,9 @@ from tkinter import filedialog, messagebox
 from utils.XMLHandler import XMLHandler
 
 from ADT.Queue import Queue
+from ADT.SparseMatrix.MatrizDispersa import MatrizDispersa
 from models.Artist import Artist
+from models.BFigure import BFigure
 
 class ArtistArea:
     def __init__(self, parent, artist: Artist, requested_figures_queue):
@@ -68,12 +70,22 @@ class ArtistArea:
             messagebox.showwarning("Informacion", "No existen solicitudes de figuras -_-")
             return
 
-        accepted_figure = self.requested_figures_queue.dequeue()
+        accepted_figure:BFigure = self.requested_figures_queue.dequeue()
         accepted_figure.applicant.accepted_figures.append(accepted_figure)
         self.artist_session.accepted_figures.append(accepted_figure)
 
         messagebox.showinfo("Solicitud", f"Figura '{accepted_figure.name}' aceptada correctamente :)")
         self.queue_label.config(text=self.showQueueText())
+
+        matriz_figura = MatrizDispersa()
+
+        current = accepted_figure.design.head
+
+        while current:
+            matriz_figura.insertar(int(current.value.row), int(current.value.col), current.value.data)
+            current = current.nextValue
+
+        matriz_figura.graficar(accepted_figure.bId)
 
     def view_queue_report(self):
         if self.requested_figures_queue.len() == 0:
