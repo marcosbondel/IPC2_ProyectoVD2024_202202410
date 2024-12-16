@@ -59,14 +59,14 @@ class ApplicantArea:
             messagebox.showinfo("Ohoh", "La pila esta vacia...")
             return
 
-        self.applicant_session.pile.draw()
+        self.applicant_session.pile.draw(self.applicant_session.aid)
 
     def view_list_report(self):
         if self.applicant_session.accepted_figures.len() == 0:
             messagebox.showinfo("Ohoh", "La lista esta vacia...")
             return
 
-        self.applicant_session.accepted_figures.draw()
+        self.applicant_session.accepted_figures.draw(self.applicant_session.aid)
 
 
     def getPicturesFilePaths(self):

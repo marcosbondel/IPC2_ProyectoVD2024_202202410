@@ -35,7 +35,7 @@ class Pile:
     def peek(self):
         return self.peek
 
-    def draw(self):
+    def draw(self, aid = ''):
         dot_code = ''
         dot_code += '''digraph G {
             rankdir=LR;
@@ -58,13 +58,13 @@ class Pile:
         dot_code+='}'
 
         #CREAMOS EL file_pile DOT
-        path_dot = 'Proyecto1/dot_reports/pile.dot'
+        path_dot = f'Proyecto1/dot_reports/pile_{aid}.dot'
         file_pile = open(path_dot,'w')
         file_pile.write(dot_code)
         file_pile.close()
 
         #GENERAMOS LA IMAGEN
-        image_path = 'Proyecto1/reports/pile.png'
+        image_path = f'Proyecto1/reports/pile_{aid}.png'
         comando = 'dot -Tpng '+path_dot+ ' -o '+image_path
         os.system(comando)
 

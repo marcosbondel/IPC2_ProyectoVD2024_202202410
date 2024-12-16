@@ -88,26 +88,3 @@ class ArtistArea:
             return
 
         self.artist_session.accepted_figures.draw(self.artist_session.aid)
-
-    def readApplicantFile(self, file_path):
-        tree = ET.parse(file_path)
-        root = tree.getroot()
-
-        for applicant in root:
-            newApplicant = Applicant()
-            newApplicant.set_aid(applicant.attrib['id'])
-            newApplicant.set_password(applicant.attrib['pwd'])
-
-            for attr in applicant:
-                match attr.tag:
-                    case 'NombreCompleto':
-                        newApplicant.set_full_name(attr.text)
-                    case 'CorreoElectronico':
-                        newApplicant.set_email(attr.text)
-                    case 'NumeroTelefono':
-                        newApplicant.set_phone(attr.text)
-                    case 'Direccion':
-                        newApplicant.set_address(attr.text)
-            
-            if newApplicant.is_valid():
-                self.applicants_list.append(newApplicant)
