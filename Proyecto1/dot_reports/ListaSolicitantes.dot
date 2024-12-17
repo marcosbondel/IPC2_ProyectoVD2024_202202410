@@ -1,0 +1,32 @@
+digraph G {
+            rankdir=LR;
+            node[shape=record, height=.1]
+        nodo1[label="{<f1>|Id: IPC-001\nNombre: Carlos Ruiz\nTelefono: 67984298\nEmail: carlos.ruiz@example.com\nDireccion: Ciudad de Guatemala, Guatemala|<f2>}"];
+nodo2[label="{<f1>|Id: IPC-002\nNombre: Carlos Ruiz\nTelefono: 15336206\nEmail: carlos.ruiz@mail.com\nDireccion: Escuintla, Guatemala|<f2>}"];
+nodo3[label="{<f1>|Id: IPC-003\nNombre: María López\nTelefono: 23637281\nEmail: maría.lópez@mail.com\nDireccion: Quetzaltenango, Guatemala|<f2>}"];
+nodo4[label="{<f1>|Id: IPC-004\nNombre: Camila Sánchez\nTelefono: 23396941\nEmail: camila.sánchez@example.com\nDireccion: Escuintla, Guatemala|<f2>}"];
+nodo5[label="{<f1>|Id: IPC-005\nNombre: Camila Sánchez\nTelefono: 66267395\nEmail: camila.sánchez@example.com\nDireccion: Escuintla, Guatemala|<f2>}"];
+nodo6[label="{<f1>|Id: IPC-006\nNombre: Diego Torres\nTelefono: 80134227\nEmail: diego.torres@example.com\nDireccion: Escuintla, Guatemala|<f2>}"];
+nodo7[label="{<f1>|Id: IPC-007\nNombre: Carlos Ruiz\nTelefono: 27595614\nEmail: carlos.ruiz@example.com\nDireccion: Cobán, Guatemala|<f2>}"];
+nodo8[label="{<f1>|Id: IPC-008\nNombre: Diego Torres\nTelefono: 17208214\nEmail: diego.torres@correo.com\nDireccion: Quetzaltenango, Guatemala|<f2>}"];
+nodo9[label="{<f1>|Id: IPC-009\nNombre: Luis Hernández\nTelefono: 65184529\nEmail: luis.hernández@correo.com\nDireccion: Escuintla, Guatemala|<f2>}"];
+nodo10[label="{<f1>|Id: IPC-010\nNombre: Diego Torres\nTelefono: 47860837\nEmail: diego.torres@example.com\nDireccion: Quetzaltenango, Guatemala|<f2>}"];
+nodo1:f2 -> nodo2:f1;
+nodo2:f1 -> nodo1:f2;
+nodo2:f2 -> nodo3:f1;
+nodo3:f1 -> nodo2:f2;
+nodo3:f2 -> nodo4:f1;
+nodo4:f1 -> nodo3:f2;
+nodo4:f2 -> nodo5:f1;
+nodo5:f1 -> nodo4:f2;
+nodo5:f2 -> nodo6:f1;
+nodo6:f1 -> nodo5:f2;
+nodo6:f2 -> nodo7:f1;
+nodo7:f1 -> nodo6:f2;
+nodo7:f2 -> nodo8:f1;
+nodo8:f1 -> nodo7:f2;
+nodo8:f2 -> nodo9:f1;
+nodo9:f1 -> nodo8:f2;
+nodo9:f2 -> nodo10:f1;
+nodo10:f1 -> nodo9:f2;
+}

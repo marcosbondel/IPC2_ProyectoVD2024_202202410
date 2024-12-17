@@ -57,7 +57,7 @@ class ApplicantsList(DoublyLinkedList):
         dot_code += '}'
 
         #CREAMOS Y ESCRIBIMOS EL applicant_file .DOT
-        dot_path = 'Proyecto1/dot_reports/doubly_linked_list.dot'
+        dot_path = 'Proyecto1/dot_reports/ListaSolicitantes.dot'
 
 
         #creo el applicant_file
@@ -66,7 +66,7 @@ class ApplicantsList(DoublyLinkedList):
         applicant_file.close()
 
         #generamos la imagen
-        img_path = 'Proyecto1/reports/doubly_linked_list.png'
+        img_path = 'Proyecto1/reports/ListaSolicitantes.png'
         command = 'dot -Tpng ' + dot_path + ' -o ' + img_path
         os.system(command)
 
