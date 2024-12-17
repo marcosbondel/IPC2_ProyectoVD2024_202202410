@@ -12,13 +12,14 @@ from ADT.app.ArtistsList import ArtistsList
 from models.Applicant import Applicant
 from models.BFigure import BFigure
 from models.BPixel import BPixel
+from views.GalleryArea import GalleryArea
 
 class ApplicantArea:
     def __init__(self, parent, requested_pictures_queue: Queue, applicant: Applicant, applicants_list: ApplicantsList, artists_list: ArtistsList):
         self.parent = parent
         self.applicant_window = tk.Toplevel()
         self.applicant_window.title("Área de Solicitante")
-        self.applicant_window.geometry("500x700")
+        self.applicant_window.geometry("500x800")
 
         self.figures_file_paths = None
         self.imported_figures = 0
@@ -36,15 +37,19 @@ class ApplicantArea:
         
         # Request button
         request_button = tk.Button(self.applicant_window, text='Solicitar', font=("Arial", 12), command=self.request_figure)
-        request_button.pack(pady=40)
+        request_button.pack(pady=35)
         
         # View pile button
         view_pile_button = tk.Button(self.applicant_window, text='Ver Pila', font=("Arial", 12), command=self.view_pile_report)
-        view_pile_button.pack(pady=50)
+        view_pile_button.pack(pady=45)
        
         # View pile button
         view_list_button = tk.Button(self.applicant_window, text='Ver Lista', font=("Arial", 12), command=self.view_list_report)
-        view_list_button.pack(pady=60)
+        view_list_button.pack(pady=55)
+        
+        # View pile button
+        view_gallery_button = tk.Button(self.applicant_window, text='Ver Galeria', font=("Arial", 12), command=self.open_gallery)
+        view_gallery_button.pack(pady=65)
 
         # Logout button
         logout_button = tk.Button(self.applicant_window, text="Cerrar sesión", font=("Arial", 12), command=self.logout)
@@ -81,6 +86,15 @@ class ApplicantArea:
             messagebox.showinfo("Ohhh", 'Ninguna figura fue cargada :"(')
 
         messagebox.showinfo("Yeahh", "Figura(s) cargadas correctamente :)")
+
+    def open_gallery(self):
+
+        if self.applicant_session.accepted_figures.len() == 0:
+            messagebox.showinfo("Ohoh", "La galeria esta vacia...")
+            return
+
+        self.applicant_window.withdraw()  # Hide the login window
+        GalleryArea(self.applicant_window, self.applicant_session)
 
     def readFiguresFiles(self, file_path):
         tree = ET.parse(file_path)
@@ -119,6 +133,5 @@ class ApplicantArea:
             return
 
         self.requested_pictures_queue.enqueue(peek.value)
-        print(f'Peek value: {peek.value}')
 
         messagebox.showinfo("Informacion", "Solicitud enviada a la cola :)")

@@ -55,8 +55,6 @@ class LoginApp:
         username = self.username_entry.get()
         password = self.password_entry.get()
 
-        self.artists_list.printListAsc()
-
         if username.startswith('IPC-'):
             applicant_found = self.applicants_list.findByID(username)
 

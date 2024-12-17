@@ -139,7 +139,7 @@ class MatrizDispersa:
     # -- GRAFICAR LA MATRIZ DISPERSA
     def graficar(self,id_figura):
         # ruta_dot = 'reportesdot/matrizDispersa_'+id_figura+'.dot'
-        ruta_dot = f'Proyecto1/dot_reports/sparse_matrix_{id_figura}.dot'
+        ruta_dot = f'Proyecto1/dot_reports/matrix_{id_figura}.dot'
         archivo = open(ruta_dot, 'w')
         codigodot = '''digraph G {
     graph [pad=\"0.5\", nodesep=\"1\", ranksep=\"1\"];
@@ -218,14 +218,14 @@ class MatrizDispersa:
         archivo.close()
 
         #Generamos la imagen
-        # ruta_svg = 'reportes/matrizDispersa_'+id_figura+'.svg'
-        ruta_svg = f'Proyecto1/reports/sparse_matrix_{id_figura}.svg'
+        # ruta_png = 'reportes/matrizDispersa_'+id_figura+'.png'
+        ruta_png = f'Proyecto1/reports/matrix_{id_figura}.png'
 
-        comando = 'dot -Tsvg '+ruta_dot+' -o '+ruta_svg
+        comando = 'dot -Tpng '+ruta_dot+' -o '+ruta_png
         os.system(comando)
 
         #Abrimos el archivo
-        ruta = os.path.abspath(ruta_svg)
+        ruta = os.path.abspath(ruta_png)
         # os.startfile(ruta)
         subprocess.run(["open", ruta])
 

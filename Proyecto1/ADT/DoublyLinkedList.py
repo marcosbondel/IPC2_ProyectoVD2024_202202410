@@ -9,6 +9,9 @@ class DoublyLinkedList:
         self.last = None
         self.length = 0
 
+    def first(self):
+        return self.head
+
     def len(self):
         return self.length
 
