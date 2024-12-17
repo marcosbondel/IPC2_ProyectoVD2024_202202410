@@ -17,8 +17,6 @@ class GalleryArea:
         self.applicant_session = applicant
         
         if self.applicant_session.accepted_figures.len() > 0:
-            # self.current_figure_path = f'{self.applicant_session.accepted_figures.first().value.bId}'
-            # self.current_figure_path = f'Proyecto1/reports/matrix_{self.applicant_session.accepted_figures.first().value.bId}.svg'
             self.current_figure = self.applicant_session.accepted_figures.first()
 
         self.load_image()

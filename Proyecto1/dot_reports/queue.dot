@@ -2,9 +2,5 @@ digraph G {
             rankdir="RL";
             label="Cola";
             node[shape=box];
-        nodo0[label="bId: 3\nname: Rana\nname: Carlos Ruiz\n"];
-nodo1[label="bId: 2\nname: Capibara\nname: Carlos Ruiz\n"];
-nodo2[label="bId: 2\nname: Capibara\nname: María López\n"];
-nodo0 -> nodo1;
-nodo1 -> nodo2;
+        nodo0[label="bId: 2\nname: Capibara\nname: María López\n"];
 }

@@ -81,7 +81,8 @@ class LoginApp:
 
             messagebox.showerror("Login", "Nombre de usuario o contraseña incorrectos")
         # if username == "AdminIPC" and password == "ARTIPC2":
-        elif username == "test" and password == "test":
+        elif username == "AdminIPC" and password == "ARTIPC2":
+        # elif username == "test" and password == "test":
             messagebox.showinfo("Login", "Inicio de sesión exitoso")
             self.open_admin_area()
         else:

@@ -79,13 +79,16 @@ class ApplicantArea:
 
         self.imported_figures = 0
 
-        for file_path in self.figures_file_paths:
-            self.readFiguresFiles(file_path)
+        if self.figures_file_paths:
+            for file_path in self.figures_file_paths:
+                self.readFiguresFiles(file_path)
 
         if self.imported_figures == 0:
             messagebox.showinfo("Ohhh", 'Ninguna figura fue cargada :"(')
 
         messagebox.showinfo("Yeahh", "Figura(s) cargadas correctamente :)")
+
+        self.figures_file_paths = None
 
     def open_gallery(self):
 
@@ -118,7 +121,6 @@ class ApplicantArea:
                         )
 
                         newFigure.design.append(newPixel)
-                    
 
         newFigure.applicant = self.applicant_session
         self.applicant_session.pile.push(newFigure)

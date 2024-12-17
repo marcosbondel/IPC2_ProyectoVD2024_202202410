@@ -7,13 +7,16 @@ class XMLHandler:
         self.openFinder()
 
     def openFinder(self):
-        self.file_paths = filedialog.askopenfilenames(
-            title="Selecciona uno o más archivos XML",
-            filetypes=(("Archivos XML", "*.xml"), ("Todos los archivos", "*.*"))
-        )
+        try:
+            self.file_paths = filedialog.askopenfilenames(
+                title="Selecciona uno o más archivos XML",
+                filetypes=(("Archivos XML", "*.xml"), ("Todos los archivos", "*.*"))
+            )
 
-        if not self.file_paths:
-            self.file_paths = None
+            if not self.file_paths:
+                self.file_paths = None
+        except Exception as e:
+            print(f'Error: {e}')
 
     def getFilePaths(self):
         return self.file_paths
