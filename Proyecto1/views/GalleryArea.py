@@ -42,8 +42,6 @@ class GalleryArea:
         self.parent.deiconify()
 
     def load_image(self):
-        print(f'Current picture: {self.current_figure.value}')
-        print(f'Current picture name: {self.current_figure.value.name}')
 
         if not self.current_figure:
             return
@@ -65,12 +63,12 @@ class GalleryArea:
 
     def previous_image(self):
         # Move to the previous image
-        # self.current_index = (self.current_index - 1) % len(images)
-        self.current_figure = self.current_figure.previousValue
+        if self.current_figure.previousValue:
+            self.current_figure = self.current_figure.previousValue
         self.load_image()
 
     def next_image(self):
         # Move to the next image
-        # self.current_index = (self.current_index + 1) % len(images)
-        self.current_figure = self.current_figure.nextValue
+        if self.current_figure.nextValue:
+            self.current_figure = self.current_figure.nextValue
         self.load_image()
