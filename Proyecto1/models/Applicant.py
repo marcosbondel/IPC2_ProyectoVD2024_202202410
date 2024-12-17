@@ -1,5 +1,6 @@
 import re
 from ADT.Pile import Pile
+from ADT.DoublyLinkedList import DoublyLinkedList
 from models.User import User
 
 class Applicant(User):
@@ -8,6 +9,7 @@ class Applicant(User):
         super().__init__(aid, password, full_name, phone, email)
         self.address = address
         self.pile = Pile() 
+        self.accepted_figures = DoublyLinkedList()
 
     def __init__(self):
         pass
@@ -21,12 +23,30 @@ class Applicant(User):
 
      # Getter and Setter for pile
     @property
+    def address(self):
+        return self._address
+
+    @address.setter
+    def address(self, value):
+        self._address = value
+
+    # Getter and Setter for pile
+    @property
     def pile(self):
         return self._pile
 
     @pile.setter
     def pile(self, value):
         self._pile = value
+    
+    # Getter and Setter for accepted_figures
+    @property
+    def accepted_figures(self):
+        return self._accepted_figures
+
+    @accepted_figures.setter
+    def accepted_figures(self, value):
+        self._accepted_figures = value
 
     def is_valid(self):
         valid_applicant = True
@@ -58,3 +78,10 @@ class Applicant(User):
         # Regular expression for phone number validation
         phone_regex = r'^\d{8}$'
         return re.match(phone_regex, self.phone) is not None
+
+    def __str__(self):
+        return f'Id: {self.aid}\\n' \
+            f'Nombre: {self.full_name}\\n' \
+            f'Telefono: {self.phone}\\n' \
+            f'Email: {self.email}\\n' \
+            f'Direccion: {self.address}'

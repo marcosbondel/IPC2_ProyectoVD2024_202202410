@@ -1,0 +1,23 @@
+digraph G {
+            rankdir=LR;
+            node[shape=record, height=.1]
+        nodo1[label="{Id: ART-223\nNombre: Miguel Hernández\nTelefono: 818299431\nEmail: miguel.hernandez@example.com\nHabilidades: Animación, Diseño Gráfico\nNotas: Creativo y eficiente en pixel art.|<f1>}"];
+nodo2[label="{Id: ART-422\nNombre: Juan Sánchez\nTelefono: 236280522\nEmail: juan.sanchez@mail.com\nHabilidades: Pixel Art, Concept Art\nNotas: Gran atención al detalle en ilustraciones.|<f1>}"];
+nodo3[label="{Id: ART-812\nNombre: Pablo Pérez\nTelefono: 628903057\nEmail: pablo.perez@mail.com\nHabilidades: Ilustración Digital, Animación\nNotas: Apto para dibujar cosas bonitas.|<f1>}"];
+nodo4[label="{Id: ART-799\nNombre: Ana Sánchez\nTelefono: 926688553\nEmail: ana.sanchez@mail.com\nHabilidades: Animación, Diseño Gráfico, Ilustración Digital\nNotas: Especialista en retratos digitales.|<f1>}"];
+nodo5[label="{Id: ART-238\nNombre: Lucía Vargas\nTelefono: 968379578\nEmail: lucia.vargas@mail.com\nHabilidades: Arte 3D, Animación\nNotas: Disponible para proyectos urgentes.|<f1>}"];
+nodo6[label="{Id: ART-593\nNombre: Juan Martínez\nTelefono: 387905066\nEmail: juan.martinez@example.com\nHabilidades: Ilustración Digital, Diseño Gráfico, Animación\nNotas: Especialista en retratos digitales.|<f1>}"];
+nodo7[label="{Id: ART-864\nNombre: Miguel Sánchez\nTelefono: 632532299\nEmail: miguel.sanchez@artistmail.com\nHabilidades: Arte 3D\nNotas: Ideal para diseño de personajes.|<f1>}"];
+nodo8[label="{Id: ART-003\nNombre: Pablo Hernández\nTelefono: 925560365\nEmail: pablo.hernandez@mail.com\nHabilidades: Concept Art\nNotas: Disponible para proyectos urgentes.|<f1>}"];
+nodo9[label="{Id: ART-096\nNombre: Elena Ramírez\nTelefono: 970244057\nEmail: elena.ramirez@mail.com\nHabilidades: Ilustración Digital\nNotas: Disponible para proyectos urgentes.|<f1>}"];
+nodo10[label="{Id: ART-201\nNombre: Lucía Sánchez\nTelefono: 899269017\nEmail: lucia.sanchez@pixelworld.net\nHabilidades: Pixel Art\nNotas: Ideal para diseño de personajes.|<f1>}"];
+nodo1 -> nodo2;
+nodo2 -> nodo3;
+nodo3 -> nodo4;
+nodo4 -> nodo5;
+nodo5 -> nodo6;
+nodo6 -> nodo7;
+nodo7 -> nodo8;
+nodo8 -> nodo9;
+nodo9 -> nodo10;
+}

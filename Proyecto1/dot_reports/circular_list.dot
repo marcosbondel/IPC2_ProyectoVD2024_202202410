@@ -1,0 +1,12 @@
+digraph G {
+            rankdir=LR;
+            node[shape=record, height=.1]
+        nodo0[label="{bId: 3\nname: Rana\nname: Carlos Ruiz\n|<f1>}"];
+nodo1[label="{bId: 2\nname: Capibara\nname: Carlos Ruiz\n|<f1>}"];
+nodo2[label="{bId: 3\nname: Rana\nname: María López\n|<f1>}"];
+nodo3[label="{bId: 2\nname: Capibara\nname: María López\n|<f1>}"];
+nodo0 -> nodo1;
+nodo1 -> nodo2;
+nodo2 -> nodo3;
+nodo3 -> nodo0[constraint=false];
+}

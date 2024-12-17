@@ -1,5 +1,6 @@
 import re
 from models.User import User
+from ADT.CircularLinkedList import CircularLinkedList
 
 class Artist(User):
 
@@ -7,23 +8,35 @@ class Artist(User):
         super().__init__(aid, password, full_name, phone, email)
         self.skills = skills
         self.notes = notes
+        self.accepted_figures = CircularLinkedList()
 
     def __init__(self):
         pass
 
-    # Getter and Setter for skills
-    def get_skills(self):
-        return self.skills
+    @property
+    def skills(self):
+        return self._skills
 
-    def set_skills(self, skills):
-        self.skills = skills
+    @skills.setter
+    def skills(self, value):
+        self._skills = value
+    
+    @property
+    def notes(self):
+        return self._notes
 
-    # Getter and Setter for notes
-    def get_notes(self):
-        return self.notes
+    @notes.setter
+    def notes(self, value):
+        self._notes = value
+ 
+    @property
+    def accepted_figures(self):
+        return self._accepted_figures
 
-    def set_notes(self, notes):
-        self.notes = notes
+    @accepted_figures.setter
+    def accepted_figures(self, value):
+        self._accepted_figures = value
+
 
     def is_valid(self):
         valid_artist = True
@@ -60,10 +73,9 @@ class Artist(User):
         return re.match(phone_regex, self.phone) is not None
 
     def __str__(self):
-        return f'aid: {self.aid}\\n' \
-            f'password: {self.password}\\n' \
-            f'full_name: {self.full_name}\\n' \
-            f'phone: {self.phone}\\n' \
-            f'email: {self.email}\\n' \
-            f'skills: {self.skills}\\n' \
-            f'notes: {self.notes}'
+        return f'Id: {self.aid}\\n' \
+            f'Nombre: {self.full_name}\\n' \
+            f'Telefono: {self.phone}\\n' \
+            f'Email: {self.email}\\n' \
+            f'Habilidades: {self.skills}\\n' \
+            f'Notas: {self.notes}'

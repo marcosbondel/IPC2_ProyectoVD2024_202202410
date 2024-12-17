@@ -17,13 +17,17 @@ class ArtistsList(LinkedList):
             currentValue = currentValue.nextValue
 
 
-    def findByID(self, id):
+    def findByID(self, aid):
         currentValue: Artist = self.head
+        artistFound = None
 
-        while currentValue.nextValue:
-            if currentValue.aid == id:
-                return currentValue
-            curentValue = currentValue.nextValue
+        while currentValue is not None:
+            if currentValue.value.aid == aid:
+                artistFound = currentValue.value
+                break
+            currentValue = currentValue.nextValue
+
+        return artistFound
     
     def draw(self):
         codedot = ''
@@ -53,7 +57,7 @@ class ArtistsList(LinkedList):
         #ESCRIBIR EL TEXTO CONCATENASO AL ARCHIVO DOT
 
         #defino la ruta donde se guarda el codigo dot
-        dot_path = 'Proyecto1/dot_reports/simple_list.dot'
+        dot_path = 'Proyecto1/dot_reports/ListaArtistas.dot'
         #creamos el file_artist dot
         file_artist = open(dot_path,'w')
         #escribimos el archivo
@@ -64,7 +68,7 @@ class ArtistsList(LinkedList):
         # GENERACIÓN DE LA IMAGEN
         
         #defino la ruta donde se guarda la imagen
-        image_path = 'Proyecto1/reports/simple_list.png'
+        image_path = 'Proyecto1/reports/ListaArtistas.png'
         #defino el command de graphviz para compilar el dot y generar la imagen
         command = 'dot -Tpng '+ dot_path + ' -o ' + image_path
         #ejecuto el command
