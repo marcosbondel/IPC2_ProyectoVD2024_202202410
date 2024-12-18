@@ -1,5 +1,8 @@
 digraph G {
             rankdir=LR;
             node[shape=record, height=.1]
-        nodo1[label="{<f1>|bId: 2\nname: Capibara\nname: Carlos Ruiz\n|<f2>}"];
+        nodo1[label="{<f1>|bId: 3\nname: Rana\nname: Carlos Ruiz\n|<f2>}"];
+nodo2[label="{<f1>|bId: 2\nname: Capibara\nname: Carlos Ruiz\n|<f2>}"];
+nodo1:f2 -> nodo2:f1;
+nodo2:f1 -> nodo1:f2;
 }
