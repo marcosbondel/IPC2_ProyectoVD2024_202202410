@@ -1,20 +1,18 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request
+from xml.etree import ElementTree as ET
 import os
 
 from models.user import User
-from utils.responder import respond_with_error
-
-from xml.etree import ElementTree as ET
+from utils.responder import respond_with_success, respond_with_error
+from data.seed import users_list, check_existance
 
 
 UserBlueprint = Blueprint('users', __name__)
 
-@UserBlueprint.route('/users/load', methods=['POST'])
+@UserBlueprint.route('/users/load.json', methods=['POST'])
 def users_load():
     try:
         xml_entry = request.data.decode('utf-8')
-
-        users = []
 
         if xml_entry == '':
             return respond_with_error('Empty XML')
@@ -23,11 +21,15 @@ def users_load():
 
         for user in root:
             new_user = User()
-            new_user.uid = user.attrib['uid']
-            new_user.password = user.attrib['password']
+            new_user.uid = user.attrib['id']
+            new_user.password = user.attrib['pwd']
+            
+            # Check user existance
+            if check_existance(new_user.uid):
+                continue
 
             for attribute in user:
-                match attribute:
+                match attribute.tag:
                     case 'NombreCompleto':
                         new_user.full_name = attribute.text
                     case 'CorreoElectronico':
@@ -40,22 +42,52 @@ def users_load():
                         new_user.profile = attribute.text
 
             if new_user.is_valid():
-                users.append(new_user)
+                users_list.append(new_user)
+        
+        create_xml(users_list)
 
-
-
+        return respond_with_success('Users loaded successfully :)')
     except Exception as e:
         print(f'Something went wrong: {e}')
+        return e
+
+
+@UserBlueprint.route('/users.json', methods=['GET'])
+def index_users_json():
+    return respond_with_success([user.to_dict() for user in users_list])
+
+@UserBlueprint.route('/users.xml', methods=['GET'])
+def index_users_xml():
+
+    return respond_with_success()
 
 def create_xml(users_list):
 
-    if os.path.exists('/data/users.xml'):
-        os.remove('/data/users.xml')
+    if os.path.exists('Proyecto2/data/users.xml'):
+        os.remove('Proyecto2/data/users.xml')
 
-    tree = ET.Element('users')
+    tree = ET.Element('solicitantes')
 
     for user in users_list:
         user: User
-        user_xml = ET.SubElement(tree, 'user', id=user.uid, pwd=user.password)
+        user_xml = ET.SubElement(tree, 'solicitante', id=user.uid, pwd=user.password)
 
-        name = ET.SubElement(user_xml, 'NombreCompleto')
+        full_name = ET.SubElement(user_xml, 'NombreCompleto')
+        full_name.text = user.full_name
+        
+        email = ET.SubElement(user_xml, 'CorreoElectronico')
+        email.text = user.email
+        
+        phone = ET.SubElement(user_xml, 'NumeroTelefono')
+        phone.text = user.phone
+        
+        address = ET.SubElement(user_xml, 'Direccion')
+        address.text = user.address
+        
+        profile = ET.SubElement(user_xml, 'perfil')
+        profile.text = user.profile
+
+    
+    tree = ET.ElementTree(tree)
+    ET.indent(tree, space='\t', level=0)
+    tree.write('Proyecto2/data/users.xml', encoding='utf-8', xml_declaration=True)

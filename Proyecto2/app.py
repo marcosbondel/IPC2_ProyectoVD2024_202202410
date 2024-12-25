@@ -2,21 +2,27 @@ from flask import Flask
 from flask_cors import CORS
 
 from controllers.users_controller import UserBlueprint
+from controllers.auth_controller import AuthBlueprint
 
 from utils.responder import respond_with_success
-
+from data.seed import users_list, load
 
 app = Flask(__name__)
 cors = CORS(app)
 
 
+# Register seed data
+load()
+
 # Register blueprints
 app.register_blueprint(UserBlueprint)
+app.register_blueprint(AuthBlueprint)
 
 
 @app.route("/")
 def hello_world():
-    return respond_with_success({'message': 'Hello'})
+    print(users_list[-1].full_name)
+    return respond_with_success(users_list[-1].full_name)
 
 
 
