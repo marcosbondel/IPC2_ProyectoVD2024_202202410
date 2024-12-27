@@ -17,6 +17,7 @@ def load():
     admin_ipc.address = ''    
     admin_ipc.profile = ''    
     admin_ipc.role = 'admin'
+    admin_ipc.figures = []
 
     users_list.append(admin_ipc)
     # users_list.append(User('AdminIPC', 'ARTIPC2', 'AdminIPC', 'AdminIPC', 'AdminIPC', 'AdminIPC', 'AdminIPC'))
