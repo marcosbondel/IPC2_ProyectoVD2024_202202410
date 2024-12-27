@@ -1,15 +1,16 @@
 {% extends "administration.html" %}
 {% load static %}
 {% block content %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'css/admin/users.css' %}">
 
-<div class="users-section p-6 bg-gray-50 rounded-lg shadow-lg">
+<div class="p-6 bg-gray-50 rounded-lg shadow-lg">
     <h1 class="text-3xl font-extrabold text-center mb-4">
         Usuarios
     </h1>
     <div
         id="usersGrid"
-        class="users-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-y-auto max-h-96"
+        class="users-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-y-auto max-h-bondel"
     >
         {% if users %}
             {% for usuario in users %}
