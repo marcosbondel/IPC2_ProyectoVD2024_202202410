@@ -21,9 +21,7 @@ app.register_blueprint(AuthBlueprint)
 
 @app.route("/")
 def hello_world():
-    print(users_list[-1].full_name)
-    return respond_with_success(users_list[-1].full_name)
-
+    return respond_with_success('Welcome')
 
 
 

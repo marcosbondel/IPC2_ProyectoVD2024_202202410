@@ -23,6 +23,7 @@ def users_load():
             new_user = User()
             new_user.uid = user.attrib['id']
             new_user.password = user.attrib['pwd']
+            new_user.figures = []
             
             # Check user existance
             if check_existance(new_user.uid):
@@ -49,16 +50,16 @@ def users_load():
         return respond_with_success('Users loaded successfully :)')
     except Exception as e:
         print(f'Something went wrong: {e}')
-        return e
+        return resopnd_with_error(e)
 
 
 @UserBlueprint.route('/users.json', methods=['GET'])
 def index_users_json():
     return respond_with_success([user.to_dict() for user in users_list])
 
+
 @UserBlueprint.route('/users.xml', methods=['GET'])
 def index_users_xml():
-
     return respond_with_success()
 
 def create_xml(users_list):

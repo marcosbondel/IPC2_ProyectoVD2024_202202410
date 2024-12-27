@@ -15,5 +15,8 @@ flask --app Proyecto2/app.py run --debug
 ```bash
 pip3 install django
 pip3 install requests
-django
+
+django-admin startproject <project-name>
+python3 manage.py runserver
+python3 manage.py startapp <app-name>
 ```

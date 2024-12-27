@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <title>Login</title>
+</head>
+<body class="bg-gray-800">
+    <div class="flex items-center justify-center h-screen">
+        <div class="bg-gray-900 p-10 rounded-lg shadow-2xl">
+            <h1 class="text-3xl font-bold text-white mb-4">IPCArt Studio</h1>
+            <form enctype="multipart/form-data" method="POST" action="/sign_in/">
+                {% csrf_token %}
+                
+                <label id="uid" for="uid" class="block text-gray-400 text-sm font-bold mb-2">Usuario:</label>
+                <input type="text" id="uid" name="uid" placeholder="Usuario" class="w-full p-2 text-white bg-gray-700 rounded mb-4">
+
+                <label id="password" for="password" class="block text-gray-400 text-sm font-bold mb-2">Contraseña:</label>
+                <input type="password" id="password" name="password" placeholder="Contraseña" class="w-full p-2 text-white bg-gray-700 rounded mb-4">
+
+                <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

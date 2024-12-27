@@ -9,6 +9,7 @@ class User:
         self._address = address
         self._profile = profile
         self._role = 'user'
+        self.figures = []
 
     def __init__(self):
         pass
@@ -76,6 +77,14 @@ class User:
     @role.setter
     def role(self, value):
         self._role = value
+
+    @property
+    def figures(self):
+        return self._figures
+
+    @figures.setter
+    def figures(self, value):
+        self._figures = value
 
     def is_valid(self):
 
