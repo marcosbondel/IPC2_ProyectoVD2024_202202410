@@ -125,7 +125,8 @@ class User:
             'Correo': self.email,
             'Telefono': self.phone,
             'Direccion': self.address,
-            'Perfil': self.profile
+            'Perfil': self.profile,
+            'Rol': self.role,
         }
     
     def __dict__(self):
@@ -135,5 +136,6 @@ class User:
             'Correo': self.email,
             'Telefono': self.phone,
             'Direccion': self.address,
-            'Perfil': self.profile
+            'Perfil': self.profile,
+            'Rol': self.role
         }

@@ -50,17 +50,42 @@ def users_load():
         return respond_with_success('Users loaded successfully :)')
     except Exception as e:
         print(f'Something went wrong: {e}')
-        return resopnd_with_error(e)
+        return respond_with_error(e)
 
 
 @UserBlueprint.route('/users.json', methods=['GET'])
 def index_users_json():
-    return respond_with_success([user.to_dict() for user in users_list])
+    return respond_with_success([user.to_dict() for user in users_list if user.uid != 'AdminIPC'])
 
 
 @UserBlueprint.route('/users.xml', methods=['GET'])
 def index_users_xml():
-    return respond_with_success()
+    tree = ET.Element('users')
+
+    for user in users_list:
+        usuario_xml = ET.SubElement(tree, 'user', id=user.uid, pwd=user.password)
+
+        full_name = ET.SubElement(usuario_xml, 'NombreCompleto')
+        full_name.text = user.full_name
+
+        email = ET.SubElement(usuario_xml, 'CorreoElectronico')
+        email.text = user.email
+
+        phone = ET.SubElement(usuario_xml, 'NumeroTelefono')
+        phone.text = user.phone
+
+        address = ET.SubElement(usuario_xml, 'Direccion')
+        address.text = user.address
+
+        profile = ET.SubElement(usuario_xml, 'perfil')
+        profile.text = user.profile
+
+        imagenes = ET.SubElement(usuario_xml, 'figures')
+    
+    ET.indent(tree, space='\t', level=0)
+    xml_str = ET.tostring(tree, encoding='utf-8', xml_declaration=True)
+
+    return xml_str
 
 def create_xml(users_list):
 

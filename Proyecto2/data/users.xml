@@ -1,5 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
 <solicitantes>
+	<solicitante id="AdminIPC" pwd="ARTIPC2">
+		<NombreCompleto>AdminIPC</NombreCompleto>
+		<CorreoElectronico />
+		<NumeroTelefono />
+		<Direccion />
+		<perfil />
+	</solicitante>
 	<solicitante id="IPC-001" pwd="3267">
 		<NombreCompleto>Carlos Ruiz</NombreCompleto>
 		<CorreoElectronico>carlos.ruiz@example.com</CorreoElectronico>

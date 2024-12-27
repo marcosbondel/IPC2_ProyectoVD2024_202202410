@@ -32,6 +32,11 @@ def load():
     root = tree.getroot()
 
     for user in root:
+
+        # Avoid duplicated admin user
+        if user.attrib['id'] == 'AdminIPC':
+            continue
+
         new_user = User()
         new_user.uid = user.attrib['id']
         new_user.password = user.attrib['pwd']

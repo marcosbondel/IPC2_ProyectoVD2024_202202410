@@ -1,0 +1,15 @@
+{% extends "administration.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/admin/xml_users.css' %}">
+<div class="xml-section p-6 bg-gray-50 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-extrabold text-center mb-4">
+        Usuarios XML
+    </h1>
+    {% if xml_content %}
+        <textarea class="xml-editor" spellcheck="false" readonly>{{xml_content}}</textarea>
+    {% else %}
+        <textarea class="xml-editor" spellcheck="false" readonly></textarea>
+    {% endif %}
+</div>
+{% endblock %}
