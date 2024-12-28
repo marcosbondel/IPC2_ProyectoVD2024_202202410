@@ -13,7 +13,7 @@ from utils.responder import respond_with_error, respond_with_success
 ImageBlueprint = Blueprint('images', __name__)
 
 @ImageBlueprint.route('/user/<string:uid>/images.json', methods=['POST'])
-def load_images(uid):
+def create_image(uid):
     
     try:
         xml_entry = request.data.decode('utf-8')

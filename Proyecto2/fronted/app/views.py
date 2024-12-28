@@ -44,20 +44,19 @@ def do_login(request):
                 response = requests.post(sign_in_endpoint, data=json_data, headers=headers)
                 response = response.json()
 
+                print(f'Response: {response}')
+
                 redirection_page = redirect('login')
 
                 match response['Rol']:
                     case 'admin':
-                        # With cache
-                        # cache.set('uid', response['Id'], timeout=None)
-
                         # With cookies
                         redirection_page = redirect('admin_load_users')
                         redirection_page.set_cookie('uid', response['Id'])
 
                         return redirection_page
                     case 'user':
-                        redirection_page = redirect('app')
+                        redirection_page = redirect('app_create')
                         redirection_page.set_cookie('uid', response['Id'])
                         
                         return redirection_page
@@ -164,3 +163,66 @@ def logout(request):
 
 def app(request):
     return render(request, 'app.html')
+
+def app_create(request):
+    return render(request, 'create.html')
+
+def app_load_xml_design(request):
+    ctx = {
+        'content':None
+    }
+    try:
+        if request.method == 'POST':
+            form = FileForm(request.POST, request.FILES)
+            
+            if form.is_valid():
+                file = request.FILES['file']
+                #guardamos el binario
+                xml = file.read()
+                decodified_xml = xml.decode('utf-8')
+                context['xml_binary'] = xml
+                context['file_content'] = decodified_xml
+                ctx['content'] = decodified_xml
+
+                return render(request, 'create.html', ctx)
+    except:
+        return render(request, 'create.html')
+
+def app_create_image(request):
+    ctx = {
+        'content': None,
+        'image': None
+    }
+
+    try:
+        if request.method == 'POST':
+            xml = context['xml_binary']
+
+            print('joder 1')
+            if xml is None:
+                print('joder 2')
+                return render(request, 'create.html')
+            
+            print('joder 3')
+            #Obtengo el id del usuario
+            #http://localhost:4000/imagenes/carga/:id_usuario
+            uid = request.COOKIES.get('uid')
+            endpoint_load_image = f'{base_endpoint}/user/{uid}/images.json'
+
+            response = requests.post(endpoint_load_image, data=xml)
+            response = response.json()
+
+            print(f'Response: {response}')
+
+            ctx['content'] = context['file_content']
+            ctx['image'] = response['matrix']
+
+            context['xml_binary'] = None
+            context['file_content'] = None
+
+            return render(request, 'create.html', ctx)
+    except:
+        return render(request, 'create.html',ctx)
+
+def app_edit(request):
+    return render(request, 'edit.html')

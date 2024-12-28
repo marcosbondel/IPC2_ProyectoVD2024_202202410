@@ -1,0 +1,67 @@
+{% extends "app.html" %}
+{% load static %}
+{% block usercontent %}
+<div class="editor-section p-6 bg-gray-50 min-h-screen">
+    <h1 class="text-3xl font-bold mb-6">Editor de Diseños</h1>
+    
+    <!-- Controles -->
+    <div class="controls flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+        <form
+            enctype="multipart/form-data"
+            method="POST"
+            action="/user/edit/"
+            class="flex flex-wrap items-center gap-4"
+        >
+            {% csrf_token %}
+            <input 
+                type="text" 
+                id="textid" 
+                name="textid"  
+                class="input-field p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-600 focus:outline-none" 
+                placeholder="ID imagen"
+            >
+            <button 
+                class="button bg-gray-700 text-white py-2 px-4 rounded-md hover:bg-gray-800 transition" 
+                name="action" 
+                value="grayscale"
+            >
+                Escala de grises
+            </button>
+            <button 
+                class="button bg-yellow-600 text-white py-2 px-4 rounded-md hover:bg-yellow-700 transition" 
+                name="action" 
+                value="sepia"
+            >
+                Sepia
+            </button>
+        </form>
+    </div>
+
+    <!-- Imágenes -->
+    <div class="images-grid grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Imagen actual -->
+        <div class="image-section bg-white rounded-lg shadow-lg p-4">
+            <h2 class="section-title text-xl font-semibold text-gray-800 mb-4">Imagen Actual</h2>
+            <div class="image-container flex items-center justify-center h-64 border border-gray-300 rounded-lg">
+                {% if imagen1 %}
+                    <img class="max-w-full max-h-full rounded-md" src="data:image/svg+xml;base64,{{imagen1}}" alt="Imagen Actual">
+                {% else %}
+                    <p class="text-gray-500">No hay imagen actual</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Imagen resultante -->
+        <div class="image-section bg-white rounded-lg shadow-lg p-4">
+            <h2 class="section-title text-xl font-semibold text-gray-800 mb-4">Imagen Resultante</h2>
+            <div class="image-container flex items-center justify-center h-64 border border-gray-300 rounded-lg">
+                {% if imagen2 %}
+                    <img class="max-w-full max-h-full rounded-md" src="data:image/svg+xml;base64,{{imagen2}}" alt="Imagen Resultante">
+                {% else %}
+                    <p class="text-gray-500">No hay imagen resultante</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
