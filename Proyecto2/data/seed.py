@@ -1,10 +1,13 @@
 import os
 from xml.etree import ElementTree as ET
 from models.user import User
+from models.Figure import Figure
+from models.Pixel import Pixel
 
 users_list = []
+figures_list = []
 
-def load():
+def load_users():
 
     # - Load admin user -
     admin_ipc = User()
@@ -58,8 +61,55 @@ def load():
 
         if new_user.is_valid():
             users_list.append(new_user)
+
+    print('Users loaded successfully :)')
     
     return users_list
+
+def load_figures():
+    if not os.path.exists('Proyecto2/data/images.xml'):
+        return []
+    
+    tree = ET.parse('Proyecto2/data/images.xml')
+    root = tree.getroot()
+
+    for figure in root:
+        fid = int(figure.attrib['id'])
+        uid = figure.attrib['id_usuario']
+        edited = figure.attrib['editado']
+        
+        if edited == '1':
+            edited = True
+        elif edited == '0':
+            edited = False
+        
+        new_figure = Figure()
+        new_figure.fid = fid
+        new_figure.uid = uid
+        new_figure.edited = edited
+        new_figure.design = []
+        
+        for attr in figure:
+            match attr.tag:
+                case 'nombre':
+                    new_figure.name = attr.text
+                case 'diseño':
+
+                    for pixel in attr:
+                        new_pixel = Pixel(
+                            int(pixel.attrib['fila']),
+                            int(pixel.attrib['col']),
+                            pixel.text
+                        )
+
+                        new_figure.design.append(new_pixel)
+        
+        figures_list.append(new_figure)
+    
+    print('Images loaded successfully :)')
+    
+    return figures_list
+
 
 def check_existance(id):
 

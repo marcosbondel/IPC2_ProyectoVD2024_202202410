@@ -1,30 +1,58 @@
+from models.Pixel import Pixel
+
 class Figure:
 
-    def __init__(self, row, column, data):
-        self.row = row
-        self.column = column
-        self.data = data
+    def __init__(self, fid, name, uid, edited = False):
+        self._fid = fid
+        self._name = name
+        self._uid = _uid
+        self._edited = False
+        self._design = []
 
+    def __init__(self):
+        pass
+
+    # Getter and Setter for fid
     @property
-    def row(self):
-        return self.row
+    def fid(self):
+        return self._fid
 
-    @row.setter
-    def row(self, value):
-        self.row = value
-    
+    @fid.setter
+    def fid(self, value):
+        self._fid = value
+
+    # Getter and Setter for name
     @property
-    def column(self):
-        return self.column
+    def name(self):
+        return self._name
 
-    @column.setter
-    def column(self, value):
-        self.column = value
-   
+    @name.setter
+    def name(self, value):
+        self._name = value
+
+    # Getter and Setter for design
     @property
-    def data(self):
-        return self.data
+    def design(self):
+        return self._design
 
-    @data.setter
-    def data(self, value):
-        self.data = value
+    @design.setter
+    def design(self, value):
+        self._design = value
+
+    # Getter and Setter for edited
+    @property
+    def edited(self):
+        return self._edited
+
+    @edited.setter
+    def edited(self, value):
+        self._edited = value
+
+    # Getter and Setter for User
+    @property
+    def uid(self):
+        return self._uid
+
+    @uid.setter
+    def uid(self, value):
+        self._uid = value
