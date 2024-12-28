@@ -1,0 +1,66 @@
+{% extends "administration.html" %}
+{% load static %}
+{% block content %}
+
+<div class="p-6 bg-white rounded-lg">
+    <h1 class="text-3xl font-extrabold mb-6">Cargar Usuarios</h1>
+
+    <div class="buttons-container flex flex-col md:flex-row gap-6 justify-center items-center">
+        <!-- Formulario Subir Archivo -->
+        <form
+            method="POST"
+            enctype="multipart/form-data"
+            action="/administration/users/load_xml/"
+            class="flex flex-col items-center"
+        >
+            {% csrf_token %}
+            <label
+                for="file"
+                class="cursor-pointer bg-purple-500 text-white px-5 py-3 rounded-lg shadow-md hover:bg-purple-600 transition-all"
+            >
+                Subir archivo
+            </label>
+            <input type="file" id="file" name="file" accept="text/xml" class="hidden">
+            <button
+                type="submit"
+                class="mt-4 bg-indigo-500 text-white px-5 py-3 rounded-lg shadow-md hover:bg-indigo-600 transition-all"
+            >
+                Ver archivo
+            </button>
+        </form>
+
+        <!-- Formulario Cargar Archivo -->
+        <form
+            method="POST"
+            enctype="multipart/form-data"
+            action="/administration/users/load_users/"
+            class="flex flex-col items-center"
+        >
+            {% csrf_token %}
+            <button
+                class="bg-red-500 text-white px-5 py-3 rounded-lg shadow-md hover:bg-red-600 transition-all"
+            >
+                Cargar archivo
+            </button>
+        </form>
+    </div>
+
+    <div class="textarea-container mt-8">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+        {% if content %}
+            <textarea
+                class="textarea w-full h-48 p-4 border border-gray-200 rounded-lg shadow-md bg-gray-50 text-sm font-mono text-gray-700"
+                placeholder="XML a cargar"
+                readonly
+            >{{content}}</textarea>
+        {% else %}
+            <textarea
+                class="textarea w-full h-48 p-4 border border-gray-200 rounded-lg shadow-md bg-gray-50 text-sm font-mono text-gray-700"
+                placeholder="XML a cargar"
+                readonly
+            ></textarea>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

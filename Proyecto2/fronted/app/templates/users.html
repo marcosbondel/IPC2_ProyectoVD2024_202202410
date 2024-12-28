@@ -1,0 +1,52 @@
+{% extends "administration.html" %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/admin/users.css' %}">
+
+<div class="p-6 bg-gray-50 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-extrabold mb-4">
+        Usuarios
+    </h1>
+    <div
+        id="usersGrid"
+        class="users-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-y-auto max-h-bondel"
+    >
+        {% if users %}
+            {% for usuario in users %}
+                <div class="user-card bg-white rounded-lg shadow-md p-4 transition-transform transform hover:scale-105">
+                    <!-- Imagen del usuario -->
+                    <div class="user-image mb-4">
+                        <img
+                            src="{{usuario.Perfil}}"
+                            alt="Perfil de {{usuario.nombre}}"
+                            class="w-full h-32 object-cover rounded-lg"
+                        />
+                    </div>
+                    <!-- Contenido del usuario -->
+                    <div class="user-content">
+                        <h2 class="user-title text-lg font-bold mb-2">
+                            {{usuario.Nombre}}
+                        </h2>
+                        <p class="user-description text-gray-700">
+                            <span class="user-subtitle font-semibold text-gray-900">ID: </span>{{usuario.Id}}
+                        </p>
+                        <p class="user-description text-gray-700">
+                            <span class="user-subtitle font-semibold text-gray-900">Correo: </span>{{usuario.Correo}}
+                        </p>
+                        <p class="user-description text-gray-700">
+                            <span class="user-subtitle font-semibold text-gray-900">Teléfono: </span>{{usuario.Telefono}}
+                        </p>
+                        <p class="user-description text-gray-700">
+                            <span class="user-subtitle font-semibold text-gray-900">Dirección: </span>{{usuario.Direccion}}
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+
+
+{% endblock %}
