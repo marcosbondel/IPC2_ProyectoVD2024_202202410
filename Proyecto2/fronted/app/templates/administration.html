@@ -20,19 +20,19 @@
 
     <!-- Menu Items -->
     <nav class="flex-1 p-4 space-y-2">
-        <a href="/administration/users/load" class="flex items-center px-4 py-2 rounded hover:bg-blue-700">
+        <a href="{% url 'admin_load_users' %}" class="flex items-center px-4 py-2 rounded hover:bg-blue-700">
         <span class="material-icons mr-3">upload</span>
         Cargar usuarios
         </a>
-        <a href="/administration/users/" class="flex items-center px-4 py-2 rounded hover:bg-blue-700">
+        <a href="{% url 'admin_users' %}" class="flex items-center px-4 py-2 rounded hover:bg-blue-700">
         <span class="material-icons mr-3">group</span>
         Ver usuarios
         </a>
-        <a href="/administration/users_xml" class="flex items-center px-4 py-2 rounded hover:bg-blue-700">
+        <a href="{% url 'admin_users_xml' %}" class="flex items-center px-4 py-2 rounded hover:bg-blue-700">
         <span class="material-icons mr-3">description</span>
         Ver XML
         </a>
-        <a href="#" class="flex items-center px-4 py-2 rounded hover:bg-blue-700">
+        <a href="{% url 'admin_stats' %}" class="flex items-center px-4 py-2 rounded hover:bg-blue-700">
         <span class="material-icons mr-3">insights</span>
         Ver estadísticas
         </a>

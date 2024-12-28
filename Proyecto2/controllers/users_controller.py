@@ -4,7 +4,7 @@ import os
 
 from models.user import User
 from utils.responder import respond_with_success, respond_with_error
-from data.seed import users_list, check_existance
+from data.seed import users_list, check_existance, figures_list
 
 
 UserBlueprint = Blueprint('users', __name__)
@@ -87,6 +87,55 @@ def index_users_xml():
     xml_str = ET.tostring(tree, encoding='utf-8', xml_declaration=True)
 
     return xml_str
+
+@UserBlueprint.route('/users/stats', methods=['GET'])
+def users_stats():
+    data_response = []
+
+    for user in users_list:
+        uid = user.uid
+        counter = 0
+
+        for figure in figures_list:
+
+            if figure.uid == 'AdminIPC':
+                continue
+
+            if figure.uid == uid:
+                counter += 1
+        
+        if uid == 'AdminIPC':
+                continue
+
+        data = {
+            'uid': uid,
+            'num_images': counter
+        }
+
+        data_response.append(data)
+
+    # Sort the data by 'num_images' in descending order
+    sorted_data = sorted(data_response, key=lambda x: x['num_images'], reverse=True)
+
+    edited_images_user = [ { 'uid': user.uid, 'num_edited': 0 } for user in users_list if user.uid != 'AdminIPC']
+    
+    for figure in figures_list:
+        for eiu in edited_images_user:
+            if figure.uid == eiu['uid'] and figure.edited:
+                eiu['num_edited'] += 1
+                break
+
+    sorted_edited_images_user = sorted(edited_images_user, key=lambda x: x['num_edited'], reverse=True)
+
+    # Get the top 3
+    top_3 = sorted_data[:3]
+
+    return respond_with_success({
+        'data': data_response,
+        'top_3': top_3,
+        'edited_images_user': sorted_edited_images_user
+    })
+    
 
 def create_xml(users_list):
 

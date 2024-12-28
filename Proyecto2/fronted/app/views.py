@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
-from .forms import LoginForm, FileForm, TextForm
 import requests
 import json
+from django.shortcuts import render, redirect
+from .forms import LoginForm, FileForm, TextForm
 from django.core.cache import cache
 from django.http import HttpResponse
+import plotly.graph_objs as go
+import plotly.offline as pyo
 
 
 base_endpoint = 'http://localhost:3000'
@@ -276,3 +278,70 @@ def app_edit_image(request):
                 return render(request, 'edit.html',ctx)
     except:
         return render(request, 'edit.html')
+
+def admin_stats(request):
+    ctx = {
+        'plot_div': None,
+        'plot_div2': None
+    }
+    
+    endpoint_stats = f'{base_endpoint}/users/stats'
+
+    response = requests.get(endpoint_stats)
+
+    data = response.json()
+
+    print(f'Response: {data}')
+
+    users = []
+    num_images = []
+    
+    users2 = []
+    num_edited = []
+
+    for dato in data['top_3']:
+        users.append(dato['uid'])
+        num_images.append(dato['num_images'])
+    
+    for dato in data['edited_images_user']:
+        users2.append(dato['uid'])
+        num_edited.append(dato['num_edited'])
+    
+    #Dibujar mi grafica
+    trace = go.Bar(
+        y=num_images,
+        x=users
+    )
+    
+    trace2 = go.Bar(
+        y=num_edited,
+        x=users2
+    )
+
+    layout = go.Layout(
+        title='Top 3 | Usuarios con mas imagenes',
+        xaxis={
+            'title': 'Usuarios',
+        },
+        yaxis={
+            'title': 'Cantidad de imagenes',
+        }
+    )
+    
+    layout2 = go.Layout(
+        title='Cantidad imagenes EDITADAS por usuario',
+        xaxis={
+            'title': 'Usuarios',
+        },
+        yaxis={
+            'title': 'Cantidad de editadas',
+        }
+    )
+
+    fig = go.Figure(data=[trace], layout=layout)
+    fig2 = go.Figure(data=[trace2], layout=layout2)
+
+    ctx['plot_div'] = pyo.plot(fig, include_plotlyjs=False, output_type='div')
+    ctx['plot_div2'] = pyo.plot(fig2, include_plotlyjs=False, output_type='div')
+
+    return render(request, 'stats.html', ctx)

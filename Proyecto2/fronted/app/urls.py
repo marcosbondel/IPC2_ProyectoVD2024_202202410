@@ -13,6 +13,7 @@ urlpatterns = [
     path('administration/users_xml/', views.admin_users_xml, name='admin_users_xml'),
     path('administration/users/load_xml/', views.admin_load_users_xml, name='admin_load_users_xml'),
     path('administration/users/load_users/', views.admin_send_users_xml, name='admin_send_users_xml'),
+    path('administration/stats', views.admin_stats, name='admin_stats'),
     
     # Normal user area
     path('app/', views.app, name='app'),
