@@ -23,6 +23,7 @@ def users_load():
             new_user = User()
             new_user.uid = user.attrib['id']
             new_user.password = user.attrib['pwd']
+            new_user.role = 'user'
             new_user.figures = []
             
             # Check user existance
