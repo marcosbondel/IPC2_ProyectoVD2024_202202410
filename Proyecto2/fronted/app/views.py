@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import LoginForm, FileForm
+from .forms import LoginForm, FileForm, TextForm
 import requests
 import json
 from django.core.cache import cache
@@ -164,6 +164,9 @@ def logout(request):
 def app(request):
     return render(request, 'app.html')
 
+def app_help(request):
+    return render(request, 'help.html')
+
 def app_create(request):
     return render(request, 'create.html')
 
@@ -198,12 +201,9 @@ def app_create_image(request):
         if request.method == 'POST':
             xml = context['xml_binary']
 
-            print('joder 1')
             if xml is None:
-                print('joder 2')
                 return render(request, 'create.html')
             
-            print('joder 3')
             #Obtengo el id del usuario
             #http://localhost:4000/imagenes/carga/:id_usuario
             uid = request.COOKIES.get('uid')
@@ -226,3 +226,53 @@ def app_create_image(request):
 
 def app_edit(request):
     return render(request, 'edit.html')
+
+def app_edit_image(request):
+    ctx = {
+        'image1': None,
+        'image2': None
+    }
+
+    try:
+        if request.method == 'POST':
+            form = TextForm(request.POST)
+
+            if form.is_valid():
+                action = request.POST.get('action')
+                textid = form.cleaned_data['textid']
+                filtro = 0
+
+                if action == 'grayscale':
+                    filtro = 1
+                elif action == 'sepia':
+                    filtro = 2
+
+                data = {
+                    'id': textid,
+                    'filtro': filtro
+                }
+
+                #obtengo el id del usuario
+                uid = request.COOKIES.get('uid')
+                #peticion al backend
+                endpoint_edit = f'{base_endpoint}/user/{uid}/images/edit.json'
+                #convertimos la data a json
+                json_data = json.dumps(data)
+
+                #HEADERS
+                headers = {
+                    'Content-Type':'application/json'
+                }
+
+                #Hacemos la peticion al backend
+                response = requests.post(endpoint_edit, data=json_data, headers=headers)
+                response = response.json()
+
+                print(f'Response: {response}')
+
+                ctx['image1'] = response['matrix1']
+                ctx['image2'] = response['matrix2']
+
+                return render(request, 'edit.html',ctx)
+    except:
+        return render(request, 'edit.html')

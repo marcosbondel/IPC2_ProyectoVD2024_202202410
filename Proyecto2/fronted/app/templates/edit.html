@@ -1,7 +1,7 @@
 {% extends "app.html" %}
 {% load static %}
 {% block usercontent %}
-<div class="editor-section p-6 bg-gray-50 min-h-screen">
+<div class="editor-section p-6 bg-gray-50 max-h-bondel">
     <h1 class="text-3xl font-bold mb-6">Editor de Diseños</h1>
     
     <!-- Controles -->
@@ -9,7 +9,7 @@
         <form
             enctype="multipart/form-data"
             method="POST"
-            action="/user/edit/"
+            action="/app/edit/image/"
             class="flex flex-wrap items-center gap-4"
         >
             {% csrf_token %}
@@ -43,8 +43,8 @@
         <div class="image-section bg-white rounded-lg shadow-lg p-4">
             <h2 class="section-title text-xl font-semibold text-gray-800 mb-4">Imagen Actual</h2>
             <div class="image-container flex items-center justify-center h-64 border border-gray-300 rounded-lg">
-                {% if imagen1 %}
-                    <img class="max-w-full max-h-full rounded-md" src="data:image/svg+xml;base64,{{imagen1}}" alt="Imagen Actual">
+                {% if image1 %}
+                    <img class="max-w-full max-h-full rounded-md" src="data:image/svg+xml;base64,{{image1}}" alt="Imagen Actual">
                 {% else %}
                     <p class="text-gray-500">No hay imagen actual</p>
                 {% endif %}
@@ -55,8 +55,8 @@
         <div class="image-section bg-white rounded-lg shadow-lg p-4">
             <h2 class="section-title text-xl font-semibold text-gray-800 mb-4">Imagen Resultante</h2>
             <div class="image-container flex items-center justify-center h-64 border border-gray-300 rounded-lg">
-                {% if imagen2 %}
-                    <img class="max-w-full max-h-full rounded-md" src="data:image/svg+xml;base64,{{imagen2}}" alt="Imagen Resultante">
+                {% if image2 %}
+                    <img class="max-w-full max-h-full rounded-md" src="data:image/svg+xml;base64,{{image2}}" alt="Imagen Resultante">
                 {% else %}
                     <p class="text-gray-500">No hay imagen resultante</p>
                 {% endif %}

@@ -20,6 +20,8 @@ urlpatterns = [
     path('app/create/load_xml/', views.app_load_xml_design, name='app_load_xml_design'),
     path('app/create/image/', views.app_create_image, name='app_create_image'),
     path('app/edit', views.app_edit, name='app_edit'),
+    path('app/edit/image/', views.app_edit_image, name='app_edit_image'),
+    path('app/help', views.app_help, name='app_help'),
     
     path('logout/', views.logout, name='logout')
 ]

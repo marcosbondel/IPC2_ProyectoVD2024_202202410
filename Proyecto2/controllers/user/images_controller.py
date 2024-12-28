@@ -64,7 +64,7 @@ def create_image(uid):
         return respond_with_error('Error al cargar la imagen')
 
     
-@ImageBlueprint.route('/user/<string:uid>/images/edit', methods=['POST'])
+@ImageBlueprint.route('/user/<string:uid>/images/edit.json', methods=['POST'])
 def editarImagen(uid):
     '''
     JSON DE ENTRADA
@@ -79,7 +79,7 @@ def editarImagen(uid):
     current_image = None
 
     for figure in figures_list:
-        if figure.uid == id:
+        if figure.fid == id:
             current_image = figure
             break
 
@@ -115,19 +115,19 @@ def editarImagen(uid):
         #2. Tonalidad sepia
         elif filtro == 2:
             #1. Pasamos de hexadecimal a RGB
-            rgb_pixel = HexToRGB(pixel.color)
+            rgb_pixel = HexToRGB(pixel.data)
             #2. Pasamos el RGB a sepia
             rgb_sepia = rgbToSepia(rgb_pixel)
             #3. Pasamos la tonalidad sepia a hexadecimal
             nuevo_color = rgbToHex(rgb_sepia)
             #4. Insertamos el nuevo pixel a la matriz2
-            matriz2.insertar(pixel.fila, pixel.columna, nuevo_color)
+            matriz2.insertar(pixel.row, pixel.col, nuevo_color)
             #5. Creamos un nuevo pixel
-            nuevo_pixel = Pixel(pixel.fila, pixel.columna, nuevo_color)
+            nuevo_pixel = Pixel(pixel.row, pixel.col, nuevo_color)
             nuevos_pixeles.append(nuevo_pixel)
     
     #2. Creamos una nueva imagen con los pixeles nuevos
-    new_figure = Figure(id, current_image.name, uid,)
+    # new_figure = Figure(id, current_image.name, uid,)
 
     new_figure = Figure()
     new_figure.fid = len(figures_list) + 1
@@ -141,8 +141,8 @@ def editarImagen(uid):
 
     return respond_with_success({
         'mensaje': 'Imagen editada correctamente',
-        'matriz1': matriz1.graficar(),
-        'matriz2': matriz2.graficar(),
+        'matrix1': matriz1.graficar(),
+        'matrix2': matriz2.graficar(),
     })
 
 def HexToRGB(hex_color):
