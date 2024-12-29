@@ -357,8 +357,6 @@ def app_gallery(request):
     response = requests.get(endpoint_gallery)
     data = response.json()
     
-    print(f'Response: {data}')
-    
     ctx['figures'] = data['gallery']
 
     return render(request, 'gallery.html', ctx)
