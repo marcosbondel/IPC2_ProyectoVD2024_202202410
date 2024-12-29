@@ -23,6 +23,7 @@ urlpatterns = [
     path('app/edit', views.app_edit, name='app_edit'),
     path('app/edit/image/', views.app_edit_image, name='app_edit_image'),
     path('app/help', views.app_help, name='app_help'),
+    path('app/gallery', views.app_gallery, name='app_gallery'),
     
     path('logout/', views.logout, name='logout')
 ]

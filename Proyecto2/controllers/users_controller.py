@@ -149,6 +149,19 @@ def users_stats():
         'edited_images_user': sorted_edited_images_user
     })
     
+@UserBlueprint.route('/users/<string:uid>/gallery.json', methods=['GET'])
+def user_gallery(uid):
+    gallery = []
+
+    for figure in figures_list:
+
+        if figure.uid == uid:
+            gallery.append(figure.to_dict())
+
+
+    return respond_with_success({
+        'gallery': gallery
+    })
 
 def create_xml(users_list):
 

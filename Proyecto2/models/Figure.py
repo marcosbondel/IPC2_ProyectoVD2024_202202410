@@ -8,6 +8,7 @@ class Figure:
         self._uid = _uid
         self._edited = False
         self._design = []
+        self._matrix = None
 
     def __init__(self):
         pass
@@ -57,9 +58,27 @@ class Figure:
     def uid(self, value):
         self._uid = value
 
-    def __str__(self):
-        return f'''
-            fid: {self.fid},
-            uid: {self.uid},
-            name: {self.name}
-        '''
+    # Getter and Setter for the Matrix
+    @property
+    def matrix(self):
+        return self._matrix
+
+    @matrix.setter
+    def matrix(self, value):
+        self._matrix = value
+
+    def to_dict(self):
+        return {
+            'fid': self.fid,
+            'uid': self.uid,
+            'name': self.name,
+            'matrix': self.matrix,
+            'edited': 'Editado' if self.edited else ''
+        }
+
+    # def __str__(self):
+    #     return f'''
+    #         fid: {self.fid},
+    #         uid: {self.uid},
+    #         name: {self.name}
+    #     '''

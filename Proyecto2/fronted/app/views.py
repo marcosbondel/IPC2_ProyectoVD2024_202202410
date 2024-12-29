@@ -214,7 +214,7 @@ def app_create_image(request):
             response = requests.post(endpoint_load_image, data=xml)
             response = response.json()
 
-            print(f'Response: {response}')
+            # print(f'Response: {response}')
 
             ctx['content'] = context['file_content']
             ctx['image'] = response['matrix']
@@ -270,7 +270,7 @@ def app_edit_image(request):
                 response = requests.post(endpoint_edit, data=json_data, headers=headers)
                 response = response.json()
 
-                print(f'Response: {response}')
+                # print(f'Response: {response}')
 
                 ctx['image1'] = response['matrix1']
                 ctx['image2'] = response['matrix2']
@@ -291,7 +291,7 @@ def admin_stats(request):
 
     data = response.json()
 
-    print(f'Response: {data}')
+    # print(f'Response: {data}')
 
     users = []
     num_images = []
@@ -345,3 +345,20 @@ def admin_stats(request):
     ctx['plot_div2'] = pyo.plot(fig2, include_plotlyjs=False, output_type='div')
 
     return render(request, 'stats.html', ctx)
+
+def app_gallery(request):
+    ctx = {
+        'figures': None
+    }
+
+    uid = request.COOKIES.get('uid')
+    endpoint_gallery = f'{base_endpoint}/users/{uid}/gallery.json'
+
+    response = requests.get(endpoint_gallery)
+    data = response.json()
+    
+    print(f'Response: {data}')
+    
+    ctx['figures'] = data['gallery']
+
+    return render(request, 'gallery.html', ctx)

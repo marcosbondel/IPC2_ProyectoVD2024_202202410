@@ -30,6 +30,7 @@ def create_image(uid):
         new_figure.uid = uid
         new_figure.edited = False
         new_figure.design = []
+        new_figure.matrix = ''
 
         for attr in root:
             match attr.tag:
@@ -51,7 +52,9 @@ def create_image(uid):
 
                         new_figure.design.append(new_pixel)
 
+
         
+        new_figure.matrix = matrix.graficar()
         figures_list.append(new_figure)
         crearXML(figures_list)
 
@@ -135,6 +138,7 @@ def editarImagen(uid):
     new_figure.uid = uid
     new_figure.design = nuevos_pixeles
     new_figure.edited = True
+    new_figure.matrix = matriz2.graficar()
 
     figures_list.append(new_figure)
     crearXML(figures_list)

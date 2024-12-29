@@ -3,6 +3,7 @@ from xml.etree import ElementTree as ET
 from models.user import User
 from models.Figure import Figure
 from models.Pixel import Pixel
+from models.SparseMatrix.MatrizDispersa import MatrizDispersa
 
 users_list = []
 figures_list = []
@@ -82,12 +83,15 @@ def load_figures():
             edited = True
         elif edited == '0':
             edited = False
+
+        matrix = MatrizDispersa()
         
         new_figure = Figure()
         new_figure.fid = fid
         new_figure.uid = uid
         new_figure.edited = edited
         new_figure.design = []
+        new_figure.matrix = ''
 
         for attr in figure:
             match attr.tag:
@@ -102,8 +106,15 @@ def load_figures():
                             pixel.text
                         )
 
+                        matrix.insertar(
+                            int(pixel.attrib['fila']),
+                            int(pixel.attrib['col']),
+                            pixel.text
+                        )
+
                         new_figure.design.append(new_pixel)
-        
+
+        new_figure.matrix = matrix.graficar()
         figures_list.append(new_figure)
     
     print('Images loaded successfully :)')
