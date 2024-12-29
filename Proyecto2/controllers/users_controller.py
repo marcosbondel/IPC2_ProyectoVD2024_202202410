@@ -64,24 +64,37 @@ def index_users_xml():
     tree = ET.Element('users')
 
     for user in users_list:
-        usuario_xml = ET.SubElement(tree, 'user', id=user.uid, pwd=user.password)
 
-        full_name = ET.SubElement(usuario_xml, 'NombreCompleto')
+        if user.uid == 'AdminIPC':
+            continue
+
+        user_xml = ET.SubElement(tree, 'user', id=user.uid, pwd=user.password)
+
+        full_name = ET.SubElement(user_xml, 'NombreCompleto')
         full_name.text = user.full_name
 
-        email = ET.SubElement(usuario_xml, 'CorreoElectronico')
+        email = ET.SubElement(user_xml, 'CorreoElectronico')
         email.text = user.email
 
-        phone = ET.SubElement(usuario_xml, 'NumeroTelefono')
+        phone = ET.SubElement(user_xml, 'NumeroTelefono')
         phone.text = user.phone
 
-        address = ET.SubElement(usuario_xml, 'Direccion')
+        address = ET.SubElement(user_xml, 'Direccion')
         address.text = user.address
 
-        profile = ET.SubElement(usuario_xml, 'perfil')
+        profile = ET.SubElement(user_xml, 'perfil')
         profile.text = user.profile
 
-        imagenes = ET.SubElement(usuario_xml, 'figures')
+        figures = ET.SubElement(user_xml, 'imagenes')
+
+        for figure in figures_list:
+            
+            if figure.uid == user.uid:
+                edited = 1 if figure.edited else 0
+
+                figure_xml = ET.SubElement(figures, 'imagen', id=str(figure.fid), id_usuario=str(user.uid), editado=str(edited))
+                figure_name = ET.SubElement(figure_xml, 'nombre')
+                figure_name.text = figure.name
     
     ET.indent(tree, space='\t', level=0)
     xml_str = ET.tostring(tree, encoding='utf-8', xml_declaration=True)

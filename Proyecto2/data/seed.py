@@ -88,7 +88,7 @@ def load_figures():
         new_figure.uid = uid
         new_figure.edited = edited
         new_figure.design = []
-        
+
         for attr in figure:
             match attr.tag:
                 case 'nombre':

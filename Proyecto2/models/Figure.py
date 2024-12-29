@@ -56,3 +56,10 @@ class Figure:
     @uid.setter
     def uid(self, value):
         self._uid = value
+
+    def __str__(self):
+        return f'''
+            fid: {self.fid},
+            uid: {self.uid},
+            name: {self.name}
+        '''
