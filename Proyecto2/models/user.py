@@ -1,3 +1,5 @@
+import re
+
 class User:
 
     def __init__(self, uid, password, full_name, email, phone, address, profile):
@@ -109,7 +111,32 @@ class User:
         if not self._profile:
             return False
 
+        if not self.is_valid_ipc_format():
+            return False
+        
+        if not self.is_valid_email():
+            return False
+        
+        if not self.is_valid_phone_number():
+            return False
+
         return True
+
+    def is_valid_ipc_format(self):
+        # Regular expression for "IPC-" followed by numbers
+        ipc_regex = r'^IPC-\d+$'
+        return re.match(ipc_regex, self.uid) is not None
+
+    def is_valid_email(self):
+        # Regular expression for email validation
+        email_regex =  r"^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ._%+-]+@[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.-]+\.[a-zA-Z]{2,}$"
+        return re.match(email_regex, self.email) is not None
+
+    # Function to validate phone number
+    def is_valid_phone_number(self):
+        # Regular expression for phone number validation
+        phone_regex = r'^\d{8}$'
+        return re.match(phone_regex, self.phone) is not None
 
     def __str__(self):
         return f'Id: {self.uid}\\n' \
